@@ -31,7 +31,7 @@ function Login() {
       console.log(response.data.authToken)
       localStorage.setItem("authToken",response.data.authToken)
       await authenticateUser()
-      navigate("/home")
+      navigate("/")
 
     } catch (error) {
       console.log(error)

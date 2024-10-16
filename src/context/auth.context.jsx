@@ -31,7 +31,7 @@ function AuthWrapper (props) {
       setIsLoggedIn(true)
       setLoggedUserId(response.data._id)
       setIsValidatingToken(false)
-
+      
     } catch (error) {
       setIsLoggedIn(false)
       setLoggedUserId(null)
