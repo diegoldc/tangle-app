@@ -34,5 +34,11 @@ export default [
         { allowConstantExport: true },
       ],
     },
+    "files.associations": {
+      "*.css": "tailwindcss"
+    },
+    "editor.quickSuggestions": {
+      "strings": "on"
+    }
   },
 ]
