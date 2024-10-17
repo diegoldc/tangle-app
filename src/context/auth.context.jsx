@@ -35,19 +35,21 @@ function AuthWrapper (props) {
     } catch (error) {
       setIsLoggedIn(false)
       setLoggedUserId(null)
-      setIsValidatingToken(true)
+      setIsValidatingToken(false)
     }
 
   }
+
+  if(isValidatingToken) {
+    return <h3>...Validando</h3>
+  }
+
   const passedContext = {
     isLoggedIn,
     loggedUserId,
     authenticateUser
   }
 
-  if(isValidatingToken) {
-    return <h3>...Validando</h3>
-  }
 
   return (
     <AuthContext.Provider value={passedContext}>

@@ -8,3 +8,22 @@
   padding: 2rem;
   text-align: center;
 }
+
+.burgerMenu {
+  display: none; 
+  flex-direction: column; 
+}
+
+.showBurger {
+  display: flex; 
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+button {
+  cursor: pointer;
+}
