@@ -1,4 +1,4 @@
-import axios from "axios";
+import service from "../services/config";
 import { createContext, useEffect, useState } from "react";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -21,13 +21,7 @@ function AuthWrapper (props) {
     
     
     try {
-      const authToken = localStorage.getItem("authToken")
-      const response = await axios.get(`${API_URL}/api/auth/verify`,{
-        headers:{
-          authorization: `Bearer ${authToken}`
-        }
-      })
-      console.log(response)
+      const response = await service.get(`/auth/verify`)
       setIsLoggedIn(true)
       setLoggedUserId(response.data._id)
       setIsValidatingToken(false)

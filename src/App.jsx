@@ -2,7 +2,7 @@ import { useState , useContext } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes , Link } from 'react-router-dom'
 import { AuthContext } from './context/auth.context'
 import Navbar from './components/Navbar'
 import Signup from './pages/auth/Signup'
@@ -21,11 +21,8 @@ function App() {
 
   const {isLoggedIn, loggedUserId} = useContext(AuthContext)
 
-  const [count, setCount] = useState(0)
-
   return (
     <div>
-      {isLoggedIn && loggedUserId}
       <Navbar/>
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -42,6 +39,7 @@ function App() {
 
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
+      {isLoggedIn && (<Link to="/projects/new-project"><button className='addProjectBtn'>Add Project</button></Link>)}
     </div>
   )
 }
