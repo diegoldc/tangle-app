@@ -14,7 +14,6 @@ function HomePage() {
   const getData = async () => {
     try {
       const response = await service.get("/projects")
-      console.log(response.data)
       setAllProjects(response.data)
     } catch (error) {
       console.log("error al traer proyectos",error)
