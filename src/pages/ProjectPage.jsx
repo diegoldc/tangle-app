@@ -25,7 +25,7 @@ function ProjectPage() {
 
   useEffect(() => {
     getData();
-  }, [isLiked]);
+  }, []);
 
   const getData = async () => {
     try {
@@ -66,6 +66,7 @@ function ProjectPage() {
         console.log("error al sumar un like", error);
       }
     }
+    getData()
   };
 
   const handleDeleteProject = async () => {

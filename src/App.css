@@ -2,15 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
+html ,body {
   background-color: rgb(253, 251, 247);
-
+  margin: 0;
 }
 
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  margin: 0;
+  padding: 20px;
   text-align: center;
 }
 

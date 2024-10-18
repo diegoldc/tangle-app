@@ -1,0 +1,1 @@
+//recibe como parametro las 5 medallas, cuenta cuantas de cada una tiene y dependiendo de eso devuelve uno de los 5 niveles. con ese nivel al regresar se hace lo que sea dependiendo de la respuesta
