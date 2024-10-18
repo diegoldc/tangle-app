@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import { Button, Label, TextInput } from "flowbite-react";
 import AddTechnologies from "../components/AddTechnologies";
 import AddCollaborators from "../components/AddCollaborators";
@@ -8,15 +7,12 @@ import service from "../services/config";
 import { AuthContext } from '../context/auth.context'
 
 
-const API_URL = import.meta.env.VITE_API_URL
-
 function AddProjectPage() {
   const {loggedUserId} = useContext(AuthContext)
 
 
   const navigate = useNavigate()
   const dateDefault = new Date(Date.now()).toISOString().split("T")[0] 
-  console.log(dateDefault)
 
   const [name, setName] = useState("")
   const [github, setGithub] = useState("")
