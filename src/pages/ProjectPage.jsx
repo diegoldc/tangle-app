@@ -191,8 +191,10 @@ function ProjectPage() {
               </Popover>
             )}
             <h1>{name}</h1>
+            <Link to={`/profile/${user._id}`} >
             <h2>{user.username}</h2>
-            <Avatar rounded />
+            </Link>
+            <Avatar img={user.img} rounded />
             <p>{description}</p>
             <div className="mt-4 flex space-x-3 lg:mt-6 m-auto">
               <Button
