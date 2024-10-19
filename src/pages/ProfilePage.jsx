@@ -96,12 +96,12 @@ function ProfilePage() {
               {isFollowed ? "Unfollow" : "Follow"}
             </Button>
           ) : (
-            <Link to={``}>
+            <Link to={`/profile/${loggedUserId}/my-info`}>
               <Button>Edit</Button>
             </Link>
           )}
-          <a href={userInfo.linkedin}>LinkedIn</a>
-          <a href={userInfo.github}>GitHub</a>
+          <a href={`https://${userInfo.linkedin}`}>LinkedIn</a>
+          <a href={`https://${userInfo.github}`}>GitHub</a>
         </Card>
 
         <Card className="">

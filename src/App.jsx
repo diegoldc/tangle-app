@@ -16,6 +16,8 @@ import FavouriteProjectsPage from './pages/FavouriteProjectsPage'
 import MyNetworkPage from './pages/MyNetworkProjectsPage'
 import AboutPage from './pages/AboutPage'
 import NotFoundPage from './pages/NotFoundPage'
+import EditUserPage from './pages/EditUserPage'
+import ChangePasswordPage from './pages/ChangePasswordPage'
 
 function App() {
 
@@ -35,6 +37,8 @@ function App() {
         <Route path="/projects/favourites" element={<FavouriteProjectsPage />} />
         <Route path="/projects/my-network" element={<MyNetworkPage />} />
         <Route path='/about' element={<AboutPage />} />
+        <Route path='/profile/:userId/my-info' element={ <EditUserPage /> } />
+        <Route path="/profile/:userId/change-password" element={<ChangePasswordPage />} />
 
 
         <Route path='*' element={<NotFoundPage />} />
