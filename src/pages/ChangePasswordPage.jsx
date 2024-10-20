@@ -5,57 +5,38 @@ import service from "../services/config";
 import bcrypt from 'bcryptjs'
 
 function ChangePasswordPage() {
+  const navigate = useNavigate()
+
   const { userId } = useParams();
 
-  const [previousPassword, setPreviousPassword] = useState("");
   const [password, setPassword] = useState("")
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("")
 
-  useEffect(() => {
-    getData();
-  }, []);
-
-  const getData = async () => {
-    try {
-      const response = await service.get(`/users/${userId}`);
-      // console.log(response.data);
-      setPreviousPassword(response.data.password);
-    } catch (error) {
-      console.log("error al traer la info del usuario", error);
-    }
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const passwordMatch = await bcrypt.compare(password, previousPassword)
-
-    if (!passwordMatch) {
-      setErrorMessage("La contraseña original no es correcta.");
-      return;
-    }
 
     if (newPassword !== confirmNewPassword) {
       setErrorMessage("Passwords must coincide");
       return;
     }
 
-    const editedPassword = { password:newPassword };
+    const passwordObj = {
+      newPassword,
+      oldPassword : password
+    }
 
     try {
-      console.log(password);
-      await service.patch(`/users/${userId}/password`, editedPassword)
-      // navigate(`/profile/${userId}`)
+      await service.patch(`/users/${userId}/password`, passwordObj)
+      navigate(`/profile/${userId}`)
     } catch (error) {
       console.log("error al cambiar contraseña", error);
+      setErrorMessage(error.response.data.message)
     }
   };
 
-  if (previousPassword === null) {
-    return <div>...spinner</div>;
-  }
 
   return (
     <Card>
