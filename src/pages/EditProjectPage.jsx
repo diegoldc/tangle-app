@@ -4,6 +4,7 @@ import AddCollaborators from "../components/AddCollaborators";
 import { useState , useContext , useEffect } from "react";
 import { useNavigate , useParams } from "react-router-dom";
 import service from "../services/config";
+import AddScreenshots from "../components/AddScreenshots";
 
 
 function EditProjectPage() {
@@ -81,7 +82,7 @@ function EditProjectPage() {
       <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
         Edit project
       </h2>
-      <form className="flex max-w-lg w-full flex-col justify-center justify-items-center gap-4 mt-10" onSubmit={handleSubmit}>
+      <form className="flex max-w-lg w-full flex-col justify-center justify-items-center gap-4 mt-10" >
       <div>
         <div className="mb-2 block">
           <Label htmlFor="name" value="Project name" />
@@ -159,15 +160,9 @@ function EditProjectPage() {
         <div className="mb-2 block">
           <Label htmlFor="screenshots" value="Add screenshots" />
         </div>
-        <TextInput
-          id="screenshots"
-          type="text"
-          autoComplete="off"
-          // value={screenshots}
-          onChange={() => setScreenshots(event.target.value)}
-          shadow
-        />
+          <AddScreenshots screenshots={screenshots} setScreenshots={setScreenshots} />
       </div>
+
 
       
       <div>
@@ -183,7 +178,7 @@ function EditProjectPage() {
         </div>
         <AddCollaborators collaborators={collaboratorsObj} setCollaborators={setCollaboratorsObj} />
       </div>
-      <Button type="submit" className="w-2/3 m-auto mt-6">Upload your project</Button>
+      <Button onClick={handleSubmit} className="w-2/3 m-auto mt-6">Upload your project</Button>
       </form>
     </>
   )

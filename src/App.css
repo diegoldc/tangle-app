@@ -61,6 +61,17 @@ html ,body {
   text-align: start;
 }
 
+.editAvatarBtn {
+  position: absolute;
+  visibility: hidden !important;
+  z-index: 10 !important;
+}
+
+.editAvatarBtn:hover {
+  visibility: visible !important;
+  z-index: 10 !important;
+}
+
 nav {
   display: flex;
   flex-direction: column;

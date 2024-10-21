@@ -2,7 +2,10 @@ import service from "../services/config";
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../context/auth.context";
-import { Card, Button, Avatar } from "flowbite-react";
+import { Card, Button, Avatar, FileInput, Label, Popover } from "flowbite-react";
+import UpdateAvatar from "../components/UpdateAvatar"
+import { FiEdit3 } from "react-icons/fi";
+
 
 function ProfilePage() {
   const { userId } = useParams();
@@ -11,6 +14,7 @@ function ProfilePage() {
   const [allProjects, setAllProjects] = useState(null);
   const [followersArr, setFollowersArr] = useState([]);
   const [isFollowed, setIsFollowed] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const { loggedUserId } = useContext(AuthContext);
 
@@ -71,6 +75,7 @@ function ProfilePage() {
   }
 
   return (
+    <>
     <div style={{ display: "flex", gap: "10px", width: "auto" }}>
       <div
         style={{
@@ -79,10 +84,17 @@ function ProfilePage() {
           width: "29vw",
           gap: "10px",
         }}
-      >
+        >
         {/*info - medallas - tech - following - followers*/}
         <Card className=" min-w-200">
           <Avatar img={userInfo.img} rounded size="xl" />
+        {userInfo._id === loggedUserId && (
+        <Popover open={open} onOpenChange={setOpen} style={{postition:"relative"}} content={
+          <UpdateAvatar getData={getData} setOpen={setOpen} />
+        } >
+          <h5 style={{color:"grey",cursor:"pointer"}} >Edit Profile Picture<FiEdit3 color="rgb(200,200,200)" /></h5>
+        </Popover>
+        )}
           <p className="text-5xl font-bold tracking-tight text-gray-900 dark:text-white max-w-full break-all">
             {userInfo.username}
           </p>
@@ -195,10 +207,12 @@ function ProfilePage() {
                   </h5>
                   {allProjects.map((project, index) => {
                     return (
-                      <Card key={index}>
+                      <Link key={index} to={`/projects/${project._id}`}>
+                      <Card >
                         <p>{project.name.toUpperCase()}</p>
                         <p>{project.description}</p>
                       </Card>
+                      </Link>
                     );
                   })}
                 </>
@@ -208,6 +222,7 @@ function ProfilePage() {
         </Card>
       </div>
     </div>
+  </>
   );
 }
 
