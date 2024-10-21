@@ -1,6 +1,6 @@
 import { useState , useEffect } from "react"
 import service from "../services/config"
-import { useNavigate , Link } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 function HomePage() {
 

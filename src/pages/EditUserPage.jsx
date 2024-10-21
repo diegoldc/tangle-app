@@ -26,7 +26,7 @@ function EditUserPage() {
   const getData = async () => {
     try {
       const response = await service.get(`/users/${userId}`)
-      console.log(response.data)
+      // console.log(response.data)
       setUsername(response.data.username)
       setFirstName(response.data.firstName)
       setLastName(response.data.lastName)

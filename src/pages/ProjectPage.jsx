@@ -211,7 +211,7 @@ function ProjectPage() {
               )}
             </div>
           </div>
-        </Card>
+        
 
         <section className="bg-white dark:bg-gray-900 py-8 lg:py-16 antialiased">
           <div className="max-w-2xl mx-auto px-4">
@@ -336,7 +336,12 @@ function ProjectPage() {
                 </>
               );
             })}
-      
+
+
+            
+          </div>
+        </section>
+      </Card>
       <Modal show={openModal} size="xl" onClose={() => setOpenModal(false)} popup>
         <Modal.Header>
           Edit your comment:
@@ -356,11 +361,6 @@ function ProjectPage() {
           </div>
         </Modal.Body>
       </Modal>
-
-
-            
-          </div>
-        </section>
       </div>
     );
   }

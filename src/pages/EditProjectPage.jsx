@@ -4,7 +4,6 @@ import AddCollaborators from "../components/AddCollaborators";
 import { useState , useContext , useEffect } from "react";
 import { useNavigate , useParams } from "react-router-dom";
 import service from "../services/config";
-import { AuthContext } from '../context/auth.context'
 
 
 function EditProjectPage() {
