@@ -5,6 +5,7 @@ import { AuthContext } from "../context/auth.context";
 import { Card, Button, Avatar, FileInput, Label, Popover } from "flowbite-react";
 import UpdateAvatar from "../components/UpdateAvatar"
 import { FiEdit3 } from "react-icons/fi";
+import GetUserLevel from "../functions/GetUserLevel"
 
 
 function ProfilePage() {
@@ -15,6 +16,8 @@ function ProfilePage() {
   const [followersArr, setFollowersArr] = useState([]);
   const [isFollowed, setIsFollowed] = useState(false);
   const [open, setOpen] = useState(false);
+  const [userLevel, setUserLevel] = useState(null)
+  const [commentsArr, setCommentsArr] = useState([])
 
   const { loggedUserId } = useContext(AuthContext);
 
@@ -24,12 +27,18 @@ function ProfilePage() {
 
   const getData = async () => {
     try {
-      const userInfo = await service.get(`/users/${userId}`);
-      setUserInfo(userInfo.data);
+      const userData = await service.get(`/users/${userId}`);
+      setUserInfo(userData.data);
+
+      const commentsInfo = await service.get(`/comments/user/${userId}`)
+      setCommentsArr(commentsInfo.data)
+
       const projectsInfo = await service.get(`/projects/user/${userId}`);
-      setAllProjects(projectsInfo.data);
+      setAllProjects(projectsInfo.data)
+
       const followersData = await service.get(`/users/followers/${userId}`);
       setFollowersArr(followersData.data);
+
       const userFollowsProfile = followersData.data.filter(
         (user) => user._id === loggedUserId
       );
@@ -69,9 +78,20 @@ function ProfilePage() {
     }
     getData();
   };
-
+  const level = async () => {
+    try {
+      setUserLevel(GetUserLevel(allProjects,commentsArr,userInfo.following,followersArr))
+      console.log(GetUserLevel(allProjects,commentsArr,userInfo.following,followersArr))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  
   if (userInfo === null) {
     return <div>...spinner</div>;
+  } else if (userInfo !== null && userLevel === null){    
+    level()
+    return (<div>...spinner</div>)
   }
 
   return (
@@ -98,6 +118,7 @@ function ProfilePage() {
           <p className="text-5xl font-bold tracking-tight text-gray-900 dark:text-white max-w-full break-all">
             {userInfo.username}
           </p>
+          <p>spider level: {userLevel.level}</p>
           {userInfo.firstName && userInfo.lastName ? (
             <h5>
               {userInfo.firstName} {userInfo.lastName}{" "}
@@ -120,6 +141,12 @@ function ProfilePage() {
           <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             MEDALS
           </h5>
+          {/* {Object.values(userLevel.medals).forEach((key) => key)} */}
+          <p>Projects Medal: {userLevel.medals.projects} </p>
+          <p>Following Medal: {userLevel.medals.following} </p>
+          <p>Followers Medal: {userLevel.medals.followers} </p>
+          <p>Comments Medal: {userLevel.medals.comments} </p>
+          <p>Likes Medal: {userLevel.medals.likes} </p>
         </Card>
 
         <Card className="">

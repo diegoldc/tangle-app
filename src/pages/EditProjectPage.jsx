@@ -31,7 +31,7 @@ function EditProjectPage() {
   const getData = async () => {
     try {
       const response = await service.get(`/projects/${projectId}`)
-      console.log("lo que llega",response.data)
+      
       setName(response.data.name)
       setGithub(response.data.github)
       setDeployment(response.data.deployment)

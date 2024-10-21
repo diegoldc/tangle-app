@@ -1,6 +1,7 @@
 import { useState , useEffect } from "react"
 import service from "../services/config"
 import { Link } from "react-router-dom"
+import SearchBar from "../components/SearchBar"
 
 function HomePage() {
 
@@ -25,10 +26,12 @@ function HomePage() {
   }
 
   return (
+    <>
+    <SearchBar />
     <div style={{display:"flex",flexWrap:"wrap"}}>
-    {allProjects.map((project) => {
+    {allProjects.map((project, index) => {
       return(
-        <div>
+        <div key={index}>
           <Link to={`/projects/${project._id}`}>
         <h1>{project.name}</h1>
         <ul>
@@ -44,6 +47,7 @@ function HomePage() {
       )
     })}
     </div>
+    </>
   )
 }
 

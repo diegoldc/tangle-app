@@ -18,6 +18,9 @@ import AboutPage from './pages/AboutPage'
 import NotFoundPage from './pages/NotFoundPage'
 import EditUserPage from './pages/EditUserPage'
 import ChangePasswordPage from './pages/ChangePasswordPage'
+import SearchUserPage from './pages/SearchUserPage'
+import SearchTechPage from './pages/SearchTechPage'
+
 
 function App() {
 
@@ -39,6 +42,8 @@ function App() {
         <Route path='/about' element={<AboutPage />} />
         <Route path='/profile/:userId/my-info' element={ <EditUserPage /> } />
         <Route path="/profile/:userId/change-password" element={<ChangePasswordPage />} />
+        <Route path='/search' element={<SearchUserPage />} />
+        <Route path='/tech/:tech' element={<SearchTechPage />} />
 
 
         <Route path='*' element={<NotFoundPage />} />
