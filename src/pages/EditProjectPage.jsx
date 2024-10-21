@@ -163,11 +163,12 @@ function EditProjectPage() {
           id="screenshots"
           type="text"
           autoComplete="off"
-          value={screenshots}
+          // value={screenshots}
           onChange={() => setScreenshots(event.target.value)}
           shadow
         />
       </div>
+
       
       <div>
         <div className="mb-2 block">
