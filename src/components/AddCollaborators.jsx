@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import service from "../services/config";
-import { Dropdown, Button, Label, TextInput, Toast, Card } from "flowbite-react";
+import { Avatar, Dropdown, Button, Label, TextInput, Toast, Card } from "flowbite-react";
 import { AuthContext } from "../context/auth.context";
 import { HiCheck, HiX } from "react-icons/hi";
 
@@ -118,12 +118,9 @@ function AddCollaborators({ collaborators, setCollaborators }) {
             //     <Toast.Toggle onClick={() => handleRemoveCollab(collab)} />
             // </Toast>
 
-            <Card
-              className="max-w-sm"
-              imgSrc="/images/blog/image-4.jpg"
-              horizontal
-              key={index}
-            >
+            <Card>
+              <div className="flex flex-row " >
+              <Avatar img={collab.img} size="sm" />
               <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                 {collab.username}
               </h5>
@@ -134,6 +131,7 @@ function AddCollaborators({ collaborators, setCollaborators }) {
                   >
                   x
                 </button>
+                </div>
               {/* <p className="font-normal text-gray-700 dark:text-gray-400">
   Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.
 </p> */}

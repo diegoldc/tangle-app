@@ -8,7 +8,11 @@ module.exports = {
     flowbite.content(),
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'deep-purple': '#673AB7', // Puedes usar el valor hexadecimal para Deep Purple (similar al Material Design)
+      },
+    },
   },
   plugins: [
     flowbite.plugin(),

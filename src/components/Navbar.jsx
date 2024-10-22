@@ -1,53 +1,80 @@
-import { useContext , useState } from "react"
-import { useNavigate , Link } from "react-router-dom"
-import { AuthContext } from "../context/auth.context"
+import { useContext, useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { AuthContext } from "../context/auth.context";
 
 function Navbar() {
-
-  const [isSettingsOpen, setIsSettingsOpen] = useState(false)
-  const { isLoggedIn, loggedUserId , authenticateUser } = useContext(AuthContext)
-  const navigate = useNavigate()
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const { isLoggedIn, loggedUserId, authenticateUser } =
+    useContext(AuthContext);
+  const navigate = useNavigate();
 
   const toggleSettings = () => setIsSettingsOpen(!isSettingsOpen);
-  
+
   const handleLogout = async () => {
     try {
-      localStorage.removeItem("authToken")
+      localStorage.removeItem("authToken");
 
-      await authenticateUser()
+      await authenticateUser();
 
-      navigate("/")
-      
+      navigate("/");
     } catch (error) {
-      console.log("error al cerrar sesión", error)
+      console.log("error al cerrar sesión", error);
     }
-  }
+  };
 
   return (
-    <nav>
-    <Link to="/" >Home</Link>
-    {isLoggedIn && <Link to="/projects/my-network" >Network</Link>}
-    {isLoggedIn && <Link to={`/profile/${loggedUserId}`} >Profile</Link>}
-      <button onClick={toggleSettings}>Settings</button>
-      <div className={`burgerMenu ${isSettingsOpen && 'showBurger'}`}>
-        <span>Theme</span>
+    <nav className="navBar">
+      <Link to="/">
+        <button className="navButton">Home</button>
+      </Link>
+      {isLoggedIn && (
+        <Link to="/projects/my-network">
+          <button className="navButton">Network</button>
+        </Link>
+      )}
+      {isLoggedIn && (
+        <Link to={`/profile/${loggedUserId}`}>
+          <button className="navButton">Profile</button>
+        </Link>
+      )}
+      <button className="navButton" onClick={toggleSettings}>
+        Settings
+      </button>
+      <div className={`burgerMenu ${isSettingsOpen && "showBurger"}`}>
+      <label className="ui-switch">
+  <input type="checkbox"/>
+  <div className="slider">
+    <div className="circle"></div>
+  </div>
+</label>
+
         {isLoggedIn ? (
-          <button onClick={handleLogout}>Logout</button>
+          <button className="navButton" onClick={handleLogout}>
+            Logout
+          </button>
         ) : (
-        <>
-        <Link to="/login" >Log in</Link>
-        <Link to="/signup" >Sign up</Link>
-        </>
+          <>
+            <Link to="/login">
+              <button className="navButton">Log in</button>
+            </Link>
+            <Link to="/signup">
+              <button className="navButton">Sign up</button>
+            </Link>
+          </>
         )}
-        <Link to="/about" >About Us</Link>
-        <a href="https://github.com/diegoldc/tangle-app">Client Repo</a>
-        <a href="https://github.com/diegoldc/tangle-server">Server Repo</a>
-        <button onClick={toggleSettings}>X</button>
+        <Link to="/about">
+          <button className="navButton">About Us</button>
+        </Link>
+        <a href="https://github.com/diegoldc/tangle-app">
+          <button className="navButton">Client Repo</button>
+        </a>
+        <a href="https://github.com/diegoldc/tangle-server">
+          <button className="navButton">Server Repo</button>
+        </a>
+        <button className="close" onClick={toggleSettings}></button>
       </div>
     </nav>
-  )
+  );
 }
 
-export default Navbar
-
-
+export default Navbar;

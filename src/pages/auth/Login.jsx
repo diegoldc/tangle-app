@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import service from "../../services/config";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context";
-import { Button, Label, TextInput } from "flowbite-react";
+import { Button, Label, TextInput, Card } from "flowbite-react";
 import formLogo from "../../assets/forms-logo.png"
 
 
@@ -44,7 +44,9 @@ function Login() {
 
   return (
     <>
-    <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+      <Card className="m-auto w-10/12 mt-10 authCard">
+
+    <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 visible">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <img
           alt="Your Company"
@@ -84,12 +86,15 @@ function Login() {
           required
           shadow />
         </div>
-        <Button type="submit" className="w-2/3 m-auto mt-6">Enter your Web</Button>
+        <Button type="submit" className="w-2/3 m-auto mt-6 bg-deep-purple">Enter your Web</Button>
         {errorMessage && <div>{errorMessage}</div>}
+        <hr />
+        <p>Don't have an account? <Link to="/signup">Click here</Link></p>
       </form>
 
       </div>
     </div>
+    </Card>
   </>
   )
 }

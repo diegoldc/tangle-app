@@ -58,11 +58,11 @@ function UpdateAvatar({getData,setOpen}) {
             />
           </svg>
           <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
-            <span className="font-semibold">Click to upload</span> or drag and drop
+            <span className="font-semibold">Click to upload</span>
           </p>
-          <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG or JPG (MAX. 800x400px)</p>
+          <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG or JPG</p>
         </div>
-      <Button onClick={handleImgUpload} >Update Picture</Button>
+      <Button className="!bg-deep-purple !focus:bg-deep-purple hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800" onClick={handleImgUpload} >Update Picture</Button>
         <FileInput onChange={handleImgChange} id="dropzone-file" className="hidden" />
       </Label>
     </Card>

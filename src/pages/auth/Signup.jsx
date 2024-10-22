@@ -1,8 +1,8 @@
 import service from "../../services/config";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate , Link } from "react-router-dom";
 // import tailwindConfig from "../../../tailwind.config";
-import { Button, Label, TextInput } from "flowbite-react";
+import { Button, Label, TextInput, Card } from "flowbite-react";
 import formLogo from "../../assets/forms-logo.png"
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -55,13 +55,14 @@ function Signup() {
         <body class="h-full">
         ```
       */}
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+      <Card className="m-auto w-10/12 mt-10 authCard">
+      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 visible">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
             alt="Your Company"
             src={formLogo}
             className="mx-auto h-10 w-auto"
-          />
+            />
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Sign up to TANGLE
           </h2>
@@ -80,7 +81,7 @@ function Signup() {
               onChange={handleUsernameChange}
               required
               shadow
-            />
+              />
           </div>
           <div>
             <div className="mb-2 block">
@@ -108,12 +109,15 @@ function Signup() {
             required
             shadow />
           </div>
-          <Button type="submit" className="w-2/3 m-auto mt-6">Register new account</Button>
+          <Button type="submit" className="w-2/3 m-auto mt-6 bg-deep-purple">Register new account</Button>
           {errorMessage && <div>{errorMessage}</div>}
+          <hr />
+          <p>Already registered? <Link to="/login">Click here</Link></p>
         </form>
 
         </div>
       </div>
+            </Card>
     </>
   );
 }

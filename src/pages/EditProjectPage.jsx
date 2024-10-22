@@ -109,6 +109,7 @@ function EditProjectPage() {
           value={github}
           onChange={() => setGithub(event.target.value)}
           required
+          addon="https://"
           shadow
         />
       </div>

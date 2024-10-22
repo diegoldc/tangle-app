@@ -150,16 +150,17 @@ function EditUserPage() {
         <AddTechnologies tech={tech} setTech={setTech} />
       </div>
 
-      <Button type="submit" className="w-2/3 m-auto mt-6">Edit your profile</Button>
+      <Button type="submit" className="w-2/3 m-auto mt-6 !bg-deep-purple !focus:bg-deep-purple hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800"
+      >Edit your profile</Button>
       </form>
       <hr />
-      <div className="flex flex-col justify-center justify-items-center">
-      <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-        Change password?
-      </h2>
-    <Link to={`/profile/${userId}/change-password`} >
-      <Button>Change Password</Button>
-    </Link>
+      <div className="flex flex-col items-center justify-center justify-items-center m-auto">
+        <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+          Change password?
+        </h2>
+        <Link className="" to={`/profile/${userId}/change-password`} >
+          <Button className="!bg-deep-purple !focus:bg-deep-purple m-5 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800" >Change Password</Button>
+        </Link>
       </div>
       </Card>
   )

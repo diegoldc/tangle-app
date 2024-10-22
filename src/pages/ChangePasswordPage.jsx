@@ -39,7 +39,8 @@ function ChangePasswordPage() {
 
 
   return (
-    <Card>
+    <Card className="m-auto w-11/12 mt-10 authCard">
+      <div className=" visible">
       <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
         Change Password
       </h2>
@@ -96,7 +97,7 @@ function ChangePasswordPage() {
 
         <Button
           type="submit"
-          className="w-2/3 m-auto mt-6"
+          className="w-2/3 m-auto mt-6 !bg-deep-purple !focus:bg-deep-purple hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800"
           // disabled={
           //   newPassword !== confirmNewPassword ||
           //   newPassword === "" ||
@@ -108,6 +109,7 @@ function ChangePasswordPage() {
       </form>
       <hr />
       <div className="flex flex-col justify-center justify-items-center"></div>
+      </div>
     </Card>
   );
 }

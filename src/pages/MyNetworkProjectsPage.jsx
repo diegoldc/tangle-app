@@ -35,8 +35,9 @@ function MyNetworkProjectsPage() {
   }
 
   return (
+    <Card>
     <div className="flex gap-5 flex-wrap">
-      {projectsArr.map((project,index) => {
+      {projectsArr.length !==0 ? projectsArr.map((project,index) => {
         return(
           <Link to={`/projects/${project._id}`}>
             <Card key={index} >
@@ -51,8 +52,11 @@ function MyNetworkProjectsPage() {
             </Card>
           </Link>
         )
-      })}
+      }) : (
+        <p>You are not following any users yet, start broadening your web!</p>
+      )}
     </div>
+  </Card>
   )
 }
 

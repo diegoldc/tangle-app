@@ -1,4 +1,4 @@
-import { FileInput, Button, Label, TextInput } from "flowbite-react";
+import { FileInput, Button, Label, TextInput, Textarea, Card } from "flowbite-react";
 import AddTechnologies from "../components/AddTechnologies";
 import AddCollaborators from "../components/AddCollaborators";
 import { useState, useContext } from "react";
@@ -23,7 +23,6 @@ function AddProjectPage() {
   const [collaboratorsObj, setCollaboratorsObj] = useState([]);
 
 
- 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -52,13 +51,14 @@ function AddProjectPage() {
     }
   };
   return (
-    <>
+    <Card className="m-auto w-11/12 mt-10 authCard">
+      <div className=" visible">
       <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
         Post a new project
       </h2>
       <form
         className="flex max-w-lg w-full flex-col justify-center justify-items-center gap-4 mt-10"
-      >
+        >
         <div>
           <div className="mb-2 block">
             <Label htmlFor="name" value="Project name" />
@@ -71,7 +71,7 @@ function AddProjectPage() {
             onChange={() => setName(event.target.value)}
             required
             shadow
-          />
+            />
         </div>
 
         <div>
@@ -84,9 +84,10 @@ function AddProjectPage() {
             autoComplete="off"
             value={github}
             onChange={() => setGithub(event.target.value)}
+            addon="https://"
             required
             shadow
-          />
+            />
         </div>
 
         <div>
@@ -99,7 +100,8 @@ function AddProjectPage() {
             autoComplete="off"
             value={deployment}
             onChange={() => setDeployment(event.target.value)}
-            shadow
+          addon="https://"
+          shadow
           />
         </div>
 
@@ -115,21 +117,22 @@ function AddProjectPage() {
             onChange={() => setCreationDate(event.target.value)}
             required
             shadow
-          />
+            />
         </div>
 
         <div>
           <div className="mb-2 block">
             <Label htmlFor="description" value="Decription" />
           </div>
-          <TextInput
+          <Textarea
             id="description"
             type="textarea"
             autoComplete="off"
             value={description}
             onChange={() => setDescription(event.target.value)}
             shadow
-          />
+            className="h-40"
+            />
         </div>
 
         
@@ -154,13 +157,14 @@ function AddProjectPage() {
           <AddCollaborators
             collaborators={collaboratorsObj}
             setCollaborators={setCollaboratorsObj}
-          />
+            />
         </div>
-        <Button onClick={handleSubmit} className="w-2/3 m-auto mt-6">
+        <Button onClick={handleSubmit} className="w-2/3 m-auto mt-6 !bg-deep-purple !focus:bg-deep-purple hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">
           Upload your project
         </Button>
       </form>
-    </>
+      </div>
+    </Card>
   );
 }
 
