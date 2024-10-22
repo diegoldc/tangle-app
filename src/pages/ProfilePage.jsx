@@ -2,10 +2,11 @@ import service from "../services/config";
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../context/auth.context";
-import { Card, Button, Avatar, FileInput, Label, Popover } from "flowbite-react";
+import { Card, Button, Avatar, FileInput, Label, Popover, Badge } from "flowbite-react";
 import UpdateAvatar from "../components/UpdateAvatar"
 import { FiEdit3 } from "react-icons/fi";
 import GetUserLevel from "../functions/GetUserLevel"
+import ProjectCard from "../components/ProjectCard";
 
 
 function ProfilePage() {
@@ -96,7 +97,8 @@ function ProfilePage() {
 
   return (
     <>
-    <div style={{ display: "flex", gap: "10px", width: "auto" }}>
+    <h1 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Profile</h1>
+    <div style={{ display: "flex", flexDirection:"column", gap: "10px", width: "auto" }}>
       <div
         style={{
           display: "flex",
@@ -106,7 +108,7 @@ function ProfilePage() {
         }}
         >
         {/*info - medallas - tech - following - followers*/}
-        <Card className=" min-w-200">
+        <Card className="" style={{minWidth:"370px"}} >
           <Avatar img={userInfo.img} rounded size="xl" />
         {userInfo._id === loggedUserId && (
         <Popover open={open} onOpenChange={setOpen} style={{postition:"relative"}} content={
@@ -130,14 +132,14 @@ function ProfilePage() {
             </Button>
           ) : (
             <Link to={`/profile/${loggedUserId}/my-info`}>
-              <Button>Edit</Button>
+              <Button className="w-2/3 m-auto mt-6 !bg-deep-purple !focus:bg-deep-purple hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">Edit profile info</Button>
             </Link>
           )}
           <a href={`https://${userInfo.linkedin}`}>LinkedIn</a>
           <a href={`https://${userInfo.github}`}>GitHub</a>
         </Card>
 
-        <Card className="">
+        <Card className="" style={{minWidth:"370px"}}>
           <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             MEDALS
           </h5>
@@ -149,18 +151,20 @@ function ProfilePage() {
           <p>Likes Medal: {userLevel.medals.likes} </p>
         </Card>
 
-        <Card className="">
+        <Card className="" style={{minWidth:"370px"}}>
           <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             TECHNOLOGIES
           </h5>
-          <div style={{ display: "flex", flexWrap: "wrap" }}>
-            {userInfo.tech.map((tech) => (
-              <div>.{tech}..</div>
+          <div className="flex flex-row flex-wrap gap-3 bg-deep-purple min-h-20 w-auto overflow-hidden p-2 justify-center rounded-lg mt-2">
+            {userInfo.tech.map((tech, index) => (
+              <Badge key={index} color="purple" size="small">
+                  {tech}
+              </Badge>
             ))}
           </div>
         </Card>
 
-        <Card className="">
+        <Card className="" style={{minWidth:"370px"}}>
           <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             FOLLOWING{" "}
             <span style={{ fontWeight: "light", fontSize: "0.7em" }}>
@@ -173,17 +177,20 @@ function ProfilePage() {
           {userInfo.following.length === 0 && userInfo._id !== loggedUserId && (
             <p>{userInfo.username} is not following anyone yet</p>
           )}
-          {userInfo.following.length !== 0 &&
-            userInfo.following.map((followingUser, index) => {
+          {userInfo.following.length !== 0 &&(
+            <div style={{display:"flex",flexWrap:"wrap",gap:"15px",maxHeight:"200px",overflow:"hidden"}} >{
+              userInfo.following.map((followingUser, index) => {
               return (
                 <Link key={index} to={`/profile/${followingUser._id}`}>
                   <Avatar img={followingUser.img} rounded />
                 </Link>
               );
             })}
+            </div>
+            )}
         </Card>
 
-        <Card className="">
+        <Card className="" style={{minWidth:"370px"}}>
           <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             FOLLOWERS{" "}
             <span style={{ fontWeight: "light", fontSize: "0.7em" }}>
@@ -201,20 +208,24 @@ function ProfilePage() {
               No one is following {userInfo.username} yet. Be the first! FOLLOW
             </p>
           )}
-          {followersArr.length !== 0 &&
-            followersArr.map((followingUser, index) => {
-              return (
-                <Link key={index} to={`/profile/${followingUser._id}`}>
+          {followersArr.length !== 0 && (
+            <div style={{display:"flex",flexWrap:"wrap",gap:"15px",maxHeight:"200px",overflow:"hidden"}} >{
+              followersArr.map((followingUser, index) => {
+                return (
+                  <Link key={index} to={`/profile/${followingUser._id}`}>
                   <Avatar img={followingUser.img} rounded />
                 </Link>
               );
-            })}
+            })
+            }
+            </div>
+            )}
         </Card>
       </div>
 
       <div>
         {/*proyectos*/}
-        <Card style={{ width: "69vw", maxWidth: "100vw", minWidth: "400px" }}>
+        <Card style={{padding:"auto", width: "69vw", maxWidth: "100vw", minWidth: "370px" }}>
           {allProjects === null ? (
             <div>...spinner</div>
           ) : (
@@ -232,16 +243,17 @@ function ProfilePage() {
                   <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                     {userInfo.username}'s projects
                   </h5>
+                  <div
+                    style={{display:"flex",flexWrap:"wrap",gap:"15px",marginTop:"15px",justifyContent:"center"}}
+                  >
                   {allProjects.map((project, index) => {
                     return (
                       <Link key={index} to={`/projects/${project._id}`}>
-                      <Card >
-                        <p>{project.name.toUpperCase()}</p>
-                        <p>{project.description}</p>
-                      </Card>
+                        <ProjectCard project={project} />
                       </Link>
                     );
                   })}
+                  </div>
                 </>
               )}
             </>

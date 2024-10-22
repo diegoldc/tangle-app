@@ -133,20 +133,34 @@ html ,body {
 
 .userUl {
   position: absolute;
-  width: auto;
+  width: 50vw;
+  max-width: 500px;
+  /* background-color: #673AB7; */
+
   z-index: 10;
   top:50px;
-  background-color: black;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
+  gap: 7px;
+  padding: 5px;
+  border-radius: 5px;
+  /* flex-wrap: wrap;
+  max-height: 100px; */
 }
 
 .userLi {
   width: 100%;
-  background-color: aqua;
+  background-color: #EDEBFE;
+  border: 1px solid #673AB7;
   text-align: start;
+  border-radius: 5px;
+  margin: 2px;
+  text-align: center;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 60px;
 }
 
 .editAvatarBtn {

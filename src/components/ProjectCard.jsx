@@ -11,11 +11,28 @@ function ProjectCard({project}) {
     <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white overflow-hidden h-10">
       {project.name.length>23 ? project.name.toUpperCase().slice(0,20)+"..." : project.name.toUpperCase()}
     </h5>
+      <div>Likes: {project.likes.length}</div>
     <Card className="p-0">
       <div className="flex flex-row justify-center gap-5">
-    <Avatar size="sm" img={project.user.img} rounded />
-    <h5>{project.user.username}</h5>
+        <Avatar size="sm" img={project.user.img} rounded />
+        <h5>{project.user.username}</h5>
       </div>
+    </Card>
+    <Card >
+      <div  className="flex flex-row justify-center gap-2">
+
+      <div  className="flex flex-row justify-center gap-2"><span>Collaborators:</span> {
+        <Avatar.Group>
+                {project.collaborators.map((collab) => {
+                  return(
+                    <Avatar key={collab._id} img={collab.img} rounded stacked />
+                  )  
+                })}
+              <Avatar.Counter total={project.collaborators.length} />
+            </Avatar.Group>
+        }</div>
+        </div>
+
     </Card>
     <div className="flex flex-row gap-3 bg-purple-200 h-11 w-auto overflow-hidden p-2 justify-center rounded-lg">
       {project.tech.map((tech,index) => 

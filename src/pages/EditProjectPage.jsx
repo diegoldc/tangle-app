@@ -1,4 +1,4 @@
-import { Button, Label, TextInput } from "flowbite-react";
+import { Button, Label, TextInput, Textarea } from "flowbite-react";
 import AddTechnologies from "../components/AddTechnologies";
 import AddCollaborators from "../components/AddCollaborators";
 import { useState , useContext , useEffect } from "react";
@@ -124,6 +124,7 @@ function EditProjectPage() {
           autoComplete="off"
           value={deployment}
           onChange={() => setDeployment(event.target.value)}
+          addon="https://"
           shadow
         />
       </div>
@@ -147,12 +148,13 @@ function EditProjectPage() {
         <div className="mb-2 block">
           <Label htmlFor="description" value="Decription" />
         </div>
-        <TextInput
+        <Textarea
           id="description"
           type="textarea"
           autoComplete="off"
           value={description}
           onChange={() => setDescription(event.target.value)}
+          className="h-40"
           shadow
         />
       </div>
@@ -179,7 +181,7 @@ function EditProjectPage() {
         </div>
         <AddCollaborators collaborators={collaboratorsObj} setCollaborators={setCollaboratorsObj} />
       </div>
-      <Button onClick={handleSubmit} className="w-2/3 m-auto mt-6">Upload your project</Button>
+      <Button onClick={handleSubmit} className="w-2/3 m-auto mt-6 !bg-deep-purple !focus:bg-deep-purple hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">Upload your project</Button>
       </form>
     </>
   )

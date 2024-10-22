@@ -78,7 +78,7 @@ function AddCollaborators({ collaborators, setCollaborators }) {
                       onClick={() => handleAddCollaborator(user)}
                       key={index}
                     >
-                      <img src={user.img} alt="" />
+                      <Avatar img={user.img} rounded size="sm" className="m-5" />
                       <p>{user.username}</p>
                     </li>
                   );
@@ -94,9 +94,9 @@ function AddCollaborators({ collaborators, setCollaborators }) {
         />
       </div>
 
-      <div>
+      <div style={{marginTop: "5px"}}>
         <Label value="Collaborators added:" />
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 mt-2">
           {collaborators.map((collab, index) => (
             // <Toast key={index}>
             //   <div
@@ -119,19 +119,23 @@ function AddCollaborators({ collaborators, setCollaborators }) {
             // </Toast>
 
             <Card>
-              <div className="flex flex-row " >
-              <Avatar img={collab.img} size="sm" />
-              <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                {collab.username}
-              </h5>
-              <button
+              <div className="flex flex-row justify-between" >
+                <div className="flex flex-row">
+                <Avatar img={collab.img} size="xs" rounded />
+                <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                  {collab.username}
+                </h5>
+                </div>
+                <div>
+                <button
                   type="button"
                   onClick={() => handleRemoveCollab(collab)}
-                  className="text-red-500 hover:text-red-700"
+                  className="text-purple-800 hover:text-purple-700"
                   >
                   x
                 </button>
-                </div>
+                    </div>
+              </div>
               {/* <p className="font-normal text-gray-700 dark:text-gray-400">
   Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.
 </p> */}

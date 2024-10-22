@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button , Label , TextInput } from "flowbite-react";
+import { Button , Label , TextInput, Badge  } from "flowbite-react";
 
 
 
@@ -43,22 +43,22 @@ function AddTechnologies(props) {
           </Button>
         </div>
 
-        <div>
+        <div style={{marginTop: "5px"}}>
           <Label value="Technologies added:" />
-          <ul className="list-disc pl-5">
+          <div className="flex flex-row flex-wrap gap-3 bg-deep-purple min-h-20 w-auto overflow-hidden p-2 justify-center rounded-lg mt-2">
             {tech.map((tech, index) => (
-              <li key={index} className="flex justify-start gap-2 items-center">
+              <Badge key={index} color="purple" size="small">
+                  {tech}
                 <button
                   type="button"
                   onClick={() => handleRemoveTech(tech)}
-                  className="text-red-500 hover:text-red-700"
+                  className="text-purple-800 hover:text-purple-700"
                   >
-                  x
+                  &nbsp;&nbsp;x
                 </button>
-                  {tech}
-              </li>
+              </Badge>
             ))}
-          </ul>
+          </div>
         </div>
     </>
   );
