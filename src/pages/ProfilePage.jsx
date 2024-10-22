@@ -7,6 +7,9 @@ import UpdateAvatar from "../components/UpdateAvatar"
 import { FiEdit3 } from "react-icons/fi";
 import GetUserLevel from "../functions/GetUserLevel"
 import ProjectCard from "../components/ProjectCard";
+import imgGithub from "../assets/github-sign.png"
+import imgLinkedin from "../assets/linkedin-logo.png"
+import Medals from "../components/Medals";
 
 
 function ProfilePage() {
@@ -127,29 +130,22 @@ function ProfilePage() {
             </h5>
           ) : null}
           {userInfo._id !== loggedUserId ? (
-            <Button onClick={handleFollow}>
+            <Button onClick={handleFollow} className="w-2/3 m-auto mt-3 !bg-deep-purple !focus:bg-deep-purple hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">
               {isFollowed ? "Unfollow" : "Follow"}
             </Button>
           ) : (
             <Link to={`/profile/${loggedUserId}/my-info`}>
-              <Button className="w-2/3 m-auto mt-6 !bg-deep-purple !focus:bg-deep-purple hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">Edit profile info</Button>
+              <Button className="w-2/3 m-auto mt-3 !bg-deep-purple !focus:bg-deep-purple hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">Edit profile info</Button>
             </Link>
           )}
-          <a href={`https://${userInfo.linkedin}`}>LinkedIn</a>
-          <a href={`https://${userInfo.github}`}>GitHub</a>
+          <div style={{display:"flex", justifyContent:"center", gap:"10px"}}>
+          
+          <a href={`https://${userInfo.linkedin}`}><img className="urlIcon" src={imgLinkedin} alt="linkedin" /></a>
+          <a href={`https://${userInfo.github}`}><img className="urlIcon" src={imgGithub} alt="github" /></a>
+          </div>
         </Card>
 
-        <Card className="" style={{minWidth:"370px"}}>
-          <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-            MEDALS
-          </h5>
-          {/* {Object.values(userLevel.medals).forEach((key) => key)} */}
-          <p>Projects Medal: {userLevel.medals.projects} </p>
-          <p>Following Medal: {userLevel.medals.following} </p>
-          <p>Followers Medal: {userLevel.medals.followers} </p>
-          <p>Comments Medal: {userLevel.medals.comments} </p>
-          <p>Likes Medal: {userLevel.medals.likes} </p>
-        </Card>
+        <Medals userLevel={userLevel}/>
 
         <Card className="" style={{minWidth:"370px"}}>
           <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">

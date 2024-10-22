@@ -1,3 +1,4 @@
+import { Spinner } from "flowbite-react";
 import service from "../services/config";
 import { createContext, useEffect, useState } from "react";
 
@@ -35,7 +36,7 @@ function AuthWrapper (props) {
   }
 
   if(isValidatingToken) {
-    return <h3>...Validando</h3>
+    return <h3><Spinner /></h3>
   }
 
   const passedContext = {

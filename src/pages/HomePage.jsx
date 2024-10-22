@@ -2,8 +2,10 @@ import { useState , useEffect } from "react"
 import service from "../services/config"
 import { Link } from "react-router-dom"
 import SearchBar from "../components/SearchBar"
-import { Card , Avatar, Badge } from "flowbite-react";
+import { Card , Avatar, Badge, Spinner } from "flowbite-react";
 import ProjectCard from "../components/ProjectCard";
+import imgLogo from "../assets/white-logo.png"
+import imgWeb from "../assets/web2.png"
 
 // import Image from "next/image";
 // import {
@@ -35,18 +37,19 @@ function HomePage() {
   }
 
   if(allProjects === null){
-    return <div>...spinner</div>
+    return <div><Spinner /></div>
   }
 
   return (
-    <>
-    <h1 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Tangle</h1>
+    <div style={{position:"relative"}}>
+    <img src={imgWeb} alt="web" style={{width:"100px" ,position: "absolute", left: "75%", top:"-30px"}}/>
+    <img src={imgLogo} alt="logo" style={{width:"60px", margin:"auto", marginBottom:"20px"}} />
 
     <SearchBar />
     <Card>
     <div
     style={{display:"flex",flexWrap:"wrap",gap:"15px",marginTop:"15px",justifyContent:"center"}}
-    // className="grid grid-cols-2 md:grid-cols-4 gap-4"
+    
     >
     {allProjects.map((project) => {
       return(
@@ -57,7 +60,7 @@ function HomePage() {
     })}
     </div>
 </Card>
-    </>
+    </div>
   )
 }
 

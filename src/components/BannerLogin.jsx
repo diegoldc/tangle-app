@@ -24,7 +24,6 @@ function Banner() {
         >
           <div className="flex flex-col items-start mb-3 me-4 md:items-center md:flex-row md:mb-0">
             <Link to={`/`}
-              href="https://flowbite.com/"
               className="flex items-center mb-2 border-gray-200 md:pe-4 md:me-4 md:border-e md:mb-0 dark:border-gray-600"
             >
               <img src={imgLogo} className="h-6 me-2" alt="Tangle Logo" />
@@ -39,12 +38,11 @@ function Banner() {
             </p>
           </div>
           <div className="flex items-center flex-shrink-0">
-            <a
-              href="#"
+            <Link to={"/login"}
               className="px-5 py-2 me-2 text-xs font-medium text-white bg-deep-purple rounded-lg hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 focus:outline-none dark:focus:ring-purple-800"
             >
               Log in
-            </a>
+            </Link>
             <button
               data-dismiss-target="#marketing-banner"
               type="button"

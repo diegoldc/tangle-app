@@ -1,27 +1,28 @@
 import { Card , Avatar, Badge } from "flowbite-react";
 const defaultProjectBG ="https://res.cloudinary.com/dtvuykwtv/image/upload/v1729589103/bpe9xnuncma0drfvji7t.jpg"
+import imgLikes from "../assets/likes.png"
 
 function ProjectCard({project}) {
   return (
     <Card
-    className="max-w-sm w-[80vw]"
+    className="max-w-sm w-[80vw] hover:bg-light-purple hover:border-purple-400 transition-all duration-500 hover:scale-105  "
     renderImage={() => <img style={{height:"150px",objectFit:"cover",objectPosition:"top",overflow:"hidden",borderTopLeftRadius:"10px",borderTopRightRadius:"10px"}} src={project.screenshots && project.screenshots.length > 0  ? project.screenshots[0] : defaultProjectBG } alt="image 1" />}
     key={project._id}
     >
     <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white overflow-hidden h-10">
       {project.name.length>23 ? project.name.toUpperCase().slice(0,20)+"..." : project.name.toUpperCase()}
     </h5>
-      <div>Likes: {project.likes.length}</div>
+      <div style={{display:"flex", gap:"2px", alignItems:"center"}}><img src={imgLikes} alt="likes" style={{width:"20px"}} /> {project.likes.length}</div>
     <Card className="p-0">
-      <div className="flex flex-row justify-center gap-5">
+      <div className="flex flex-row justify-center gap-5 items-center">
         <Avatar size="sm" img={project.user.img} rounded />
         <h5>{project.user.username}</h5>
       </div>
     </Card>
     <Card >
-      <div  className="flex flex-row justify-center gap-2">
 
-      <div  className="flex flex-row justify-center gap-2"><span>Collaborators:</span> {
+
+      <div className="flex flex-row justify-center gap-2 items-center"><span>Collaborators:</span> {
         <Avatar.Group>
                 {project.collaborators.map((collab) => {
                   return(
@@ -31,7 +32,7 @@ function ProjectCard({project}) {
               <Avatar.Counter total={project.collaborators.length} />
             </Avatar.Group>
         }</div>
-        </div>
+      
 
     </Card>
     <div className="flex flex-row gap-3 bg-purple-200 h-11 w-auto overflow-hidden p-2 justify-center rounded-lg">

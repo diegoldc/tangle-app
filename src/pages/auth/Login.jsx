@@ -39,6 +39,7 @@ function Login() {
 
     } catch (error) {
       console.log(error)
+      setErrorMessage(error.response.data.message)
     }
   }
 
@@ -86,8 +87,10 @@ function Login() {
           required
           shadow />
         </div>
-        <Button type="submit" className="w-2/3 m-auto mt-6 bg-deep-purple">Enter your Web</Button>
-        {errorMessage && <div>{errorMessage}</div>}
+        <Button type="submit" className="w-2/3 m-auto mt-6 !bg-deep-purple !hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 focus:outline-none dark:focus:ring-purple-800">Enter your Web
+        
+        </Button>
+        {errorMessage && <div className="text-red-500">{errorMessage}</div>}
         <hr />
         <p>Don't have an account? <Link to="/signup">Click here</Link></p>
       </form>

@@ -3,9 +3,11 @@ import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import { useParams, useNavigate } from "react-router-dom";
-import { Avatar, Card, Button, Popover, Label, Modal, TextInput } from "flowbite-react";
+import { Avatar, Card, Button, Popover, Label, Modal, TextInput, Spinner } from "flowbite-react";
 import { FaTrashCan } from "react-icons/fa6";
 import { FiEdit3 } from "react-icons/fi";
+import imgLikes from "../assets/likes.png"
+import ScreenshotsCarousel from "../components/ScreenshotsCarousel";
 
 function ProjectPage() {
   const { projectId } = useParams();
@@ -137,7 +139,7 @@ function ProjectPage() {
 
 
   if (projectInfo === null || allComments === null) {
-    return <div>...spinner</div>;
+    return <div><Spinner /></div>;
   } else {
     const {
       name,
@@ -196,14 +198,24 @@ function ProjectPage() {
             </Link>
             <Avatar img={user.img} rounded />
             <p>{description}</p>
-            <div className="mt-4 flex space-x-3 lg:mt-6 m-auto">
-              <Button
+
+            {projectInfo && projectInfo.screenshots && (
+  <ScreenshotsCarousel projectInfo={projectInfo} />
+)}
+
+            <div className="mt-4 flex space-x-3 lg:mt-6 m-auto items-center">
+              <div style={{display:"flex", alignItems:"center", gap:"10px", backgroundColor:"grey", borderRadius:"5px", padding:"5px"}}>
+
+              <img style={{width:"31px"}} src={imgLikes}                
                 onClick={handleLike}
                 onMouseOver={handleMouseOver}
                 onMouseOut={handleMouseOut}
-              >
-                {likeText}
-              </Button>
+                />
+                <span >
+                  {likeText}
+                  </span>
+                </div>
+              
               {user._id === loggedUserId && (
                 <Link to={`/projects/${projectId}/update`}>
                   <Button>Edit</Button>

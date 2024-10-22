@@ -10,7 +10,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'deep-purple': '#673AB7', // Puedes usar el valor hexadecimal para Deep Purple (similar al Material Design)
+        'deep-purple': '#673AB7',
+        "light-purple": "#d8b4fe"
       },
     },
   },
@@ -18,4 +19,3 @@ module.exports = {
     flowbite.plugin(),
   ],
 }
-

@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
+import imgMenu from "../assets/burger.png"
 
 function Navbar() {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
@@ -38,7 +39,7 @@ function Navbar() {
         </Link>
       )}
       <button className="navButton" onClick={toggleSettings}>
-        Settings
+        <img src={imgMenu} alt="menu" style={{width:"20px"}} />
       </button>
       <div className={`burgerMenu ${isSettingsOpen && "showBurger"}`}>
       <label className="ui-switch">
