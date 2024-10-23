@@ -124,10 +124,10 @@ function ProfilePage() {
       <div
         style={{
           display: "flex",
-          flexDirection: "column",
           gap: "10px",
           width: "auto",
         }}
+        className="profileDiv"
       >
         <div
           style={{
@@ -307,7 +307,7 @@ function ProfilePage() {
                     <h1>No projects posted!</h1>
                     <p>Add a new project here</p>
                     <Link to="/projects/new-project">
-                      <Button>Add a Project!</Button>
+                      <Button className="!bg-deep-purple !focus:bg-deep-purple hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800" >Add a Project!</Button>
                     </Link>
                   </>
                 ) : (

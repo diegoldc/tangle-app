@@ -3,7 +3,6 @@ import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import { GiHamburgerMenu } from "react-icons/gi";
 import service from "../services/config";
-import { Spinner } from "flowbite-react";
 import { ThemeContext } from "../context/theme.context";
 import { GiSpiderWeb } from "react-icons/gi";
 import { IoHomeOutline } from "react-icons/io5";
@@ -14,6 +13,7 @@ import { BsPencilSquare } from "react-icons/bs";
 function Navbar() {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [userImage, setUserImage] = useState(null);
+  const [username, setUsername] = useState(null)
   const { isLoggedIn, loggedUserId, authenticateUser } = useContext(AuthContext);
   const { theme, toggleTheme } = useContext(ThemeContext);
   const navigate = useNavigate();
@@ -27,6 +27,7 @@ function Navbar() {
       try {
         const response = await service.get(`/users/${loggedUserId}`);
         setUserImage(response.data.img);
+        setUsername(response.data.username)
       } catch (error) {
         console.log("error al traer la imagen de usuario");
       }
@@ -36,6 +37,7 @@ function Navbar() {
   const toggleSettings = () => setIsSettingsOpen(!isSettingsOpen);
 
   const handleLogout = async () => {
+    toggleSettings()
     try {
       localStorage.removeItem("authToken");
       await authenticateUser();
@@ -50,12 +52,14 @@ function Navbar() {
       <Link to="/">
         <button className="navButton">
         <IoHomeOutline style={{width:"40px", height:"auto"}}/>
+        <span className="navButtonTxt icon" >Home</span>
         </button>
       </Link>
       {isLoggedIn && (
         <Link to="/projects/my-network">
           <button className="navButton">
           <GiSpiderWeb style={{width:"40px", height:"auto"}}/>
+          <span className="navButtonTxt icon" >My Web</span>
           </button>
         </Link>
       )}
@@ -72,13 +76,15 @@ function Navbar() {
                 objectFit: "cover",
               }}
             />
+            <span className="navButtonTxt user" >{username}</span>
           </button>
         </Link>
       )}
       <button className="navButton" onClick={toggleSettings}>
       <GiHamburgerMenu style={{width:"40px", height:"auto"}}/>
+      <span className="navButtonTxt icon" >More</span>
       </button>
-      <div className={`burgerMenu ${isSettingsOpen && "showBurger"}`}>
+      <div className={`burgerMenu ${isSettingsOpen && "showBurger"} ${isLoggedIn && "logged"}`}>
         <label className="ui-switch">
           <input
             type="checkbox"
@@ -90,17 +96,27 @@ function Navbar() {
           </div>
         </label>
 
+
+
         {isLoggedIn ? (
           <button className="navButton" onClick={handleLogout}>
             <RiLogoutBoxRLine style={{width:"40px", height:"auto"}}/>
+            <span className="navButtonTxt" >Log out</span>
+
           </button>
         ) : (
           <>
             <Link to="/login">
-              <button className="navButton"><RiLoginBoxLine style={{width:"40px", height:"auto"}}/></button>
+    <button className="navButton" onClick={toggleSettings} ><RiLoginBoxLine style={{width:"40px", height:"auto"}}/>
+            <span className="navButtonTxt" >Log in</span>
+              </button>
+
             </Link>
             <Link to="/signup">
-              <button className="navButton"><BsPencilSquare style={{width:"40px", height:"auto"}} /></button>
+              <button className="navButton" onClick={toggleSettings} ><BsPencilSquare style={{width:"40px", height:"auto"}} />
+            <span className="navButtonTxt" >Sign up</span>
+              </button>
+
             </Link>
           </>
         )}

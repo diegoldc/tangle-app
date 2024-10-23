@@ -3,11 +3,16 @@ import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 
 import imgLogo from "../assets/white-logo.png";
+import imgLogoPurple from "../assets/purple-logo.png";
+import { ThemeContext } from "../context/theme.context";
+
 
 function Banner() {
   const [showBanner, setShowBanner] = useState(true);
 
   const { isLoggedIn } = useContext(AuthContext);
+  const { theme } = useContext(ThemeContext);
+
 
   const handleClose = () => {
     setShowBanner(false);
@@ -26,10 +31,11 @@ function Banner() {
             <Link to={`/`}
               className="flex items-center mb-2 border-gray-200 md:pe-4 md:me-4 md:border-e md:mb-0 dark:border-gray-600"
             >
-              <img src={imgLogo} className="h-6 me-2 w-32 h-auto flex" alt="Tangle Logo" />
-              {/* <span className="self-center text-lg font-semibold whitespace-nowrap dark:text-white">
-                Tangle
-              </span> */}
+              {theme === "dark" ? (
+                <img src={imgLogo} className="h-6 me-2 w-32 h-auto flex" alt="Tangle Logo" />
+              ) : (
+                <img src={imgLogoPurple} className="h-6 me-2 w-32 h-auto flex" alt="Tangle Logo" />
+              )}
             </Link>
           </div>
           <div>

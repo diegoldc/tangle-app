@@ -53,11 +53,11 @@ function AddProjectPage() {
   return (
     <Card className="m-auto w-11/12 mt-10 authCard">
       <div className=" visible">
-      <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+      <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight">
         Post a new project
       </h2>
       <form
-        className="flex max-w-lg w-full flex-col justify-center justify-items-center gap-4 mt-10"
+        className="flex max-w-lg w-full flex-col justify-center justify-items-center gap-4 mt-10 m-auto"
         >
         <div>
           <div className="mb-2 block">

@@ -64,8 +64,10 @@ function EditUserPage() {
   }
 
   return (
-    <Card className="flex flex-col justify-center justify-items-center " >
-      <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+    <Card className="flex flex-col justify-center justify-items-center authCard" >
+      <div className=" visible">
+
+      <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight">
         Edit profile
       </h2>
       <form className="flex max-w-lg w-full flex-col justify-center justify-items-center gap-4 mt-10 m-auto" onSubmit={handleSubmit}>
@@ -81,7 +83,7 @@ function EditUserPage() {
           onChange={() => setUsername(event.target.value)}
           required
           shadow
-        />
+          />
       </div>
 
       <div>
@@ -96,7 +98,7 @@ function EditUserPage() {
           onChange={() => setFirstName(event.target.value)}
           required
           shadow
-        />
+          />
       </div>
 
       <div>
@@ -110,7 +112,7 @@ function EditUserPage() {
           value={lastName}
           onChange={() => setLastName(event.target.value)}
           shadow
-        />
+          />
       </div>
 
       <div>
@@ -125,7 +127,7 @@ function EditUserPage() {
           onChange={() => setGithub(event.target.value)}
           addon="https://"
           shadow
-        />
+          />
       </div>
 
       <div>
@@ -140,7 +142,7 @@ function EditUserPage() {
           onChange={() => setLinkedin(event.target.value)}
           addon="https://"
           shadow
-        />
+          />
       </div>
       
       <div>
@@ -161,6 +163,7 @@ function EditUserPage() {
         <Link className="" to={`/profile/${userId}/change-password`} >
           <Button className="!bg-deep-purple !focus:bg-deep-purple m-5 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800" >Change Password</Button>
         </Link>
+      </div>
       </div>
       </Card>
   )

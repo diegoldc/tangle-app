@@ -6,6 +6,7 @@ import { ThemeContext } from "../context/theme.context";
 import imgWhiteLikes from "../assets/white-likes.png";
 import { useContext } from "react";
 import { FaCalendarDays } from "react-icons/fa6";
+import { RxValueNone } from "react-icons/rx";
 
 function ProjectCard({ project }) {
   const { theme } = useContext(ThemeContext);
@@ -73,7 +74,7 @@ function ProjectCard({ project }) {
         </div>
       </Card>
 
-      {project.collaborators.length > 0 && (
+      {project.collaborators.length > 0 ? (
         <Card className="dark:border-1 dark:border-purple-200">
           <div className="flex flex-row justify-center gap-2 items-center">
             <span className="text-md font-bold tracking-tight text-gray-900 dark:text-white overflow-hidden h-10 flex items-center">
@@ -99,6 +100,15 @@ function ProjectCard({ project }) {
               </Avatar.Group>
             }
           </div>
+        </Card>
+      ) : (
+        <Card className="dark:border-1 dark:border-purple-200">
+                    <div className="flex flex-row justify-center gap-2 items-center">
+            <span className="text-md font-bold tracking-tight text-gray-900 dark:text-white overflow-hidden h-10 flex items-center">
+              Collaborators:
+            </span>
+              <RxValueNone size={35} />
+            </div>
         </Card>
       )}
 

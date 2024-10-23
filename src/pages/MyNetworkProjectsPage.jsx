@@ -39,9 +39,17 @@ function MyNetworkProjectsPage() {
 
   return (
     <>
-      <h1 className="mt-10 mb-5 text-center text-2xl font-bold leading-9 tracking-tight ">My Network</h1>
+      <h1 className="mt-10 mb-5 text-center text-2xl font-bold leading-9 tracking-tight ">My web</h1>
       <Card>
-        <div className="flex gap-5 flex-wrap">
+      <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "15px",
+            marginTop: "15px",
+            justifyContent: "center",
+          }}
+        >
           {projectsArr.length !== 0 ? (
             projectsArr.map((project, index) => {
               return (

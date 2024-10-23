@@ -1,4 +1,4 @@
-import { Button, Label, TextInput, Textarea, Spinner } from "flowbite-react";
+import { Button, Label, TextInput, Textarea, Spinner, Card } from "flowbite-react";
 import AddTechnologies from "../components/AddTechnologies";
 import AddCollaborators from "../components/AddCollaborators";
 import { useState , useContext , useEffect } from "react";
@@ -79,10 +79,13 @@ function EditProjectPage() {
 
   return (
     <>
+        <Card className="flex flex-col justify-center justify-items-center authCard" >
+        <div className=" visible">
+
       <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
         Edit project
       </h2>
-      <form className="flex max-w-lg w-full flex-col justify-center justify-items-center gap-4 mt-10" >
+      <form className="flex max-w-lg w-full flex-col justify-center justify-items-center gap-4 mt-10 m-auto" >
       <div>
         <div className="mb-2 block">
           <Label htmlFor="name" value="Project name" />
@@ -183,6 +186,8 @@ function EditProjectPage() {
       </div>
       <Button onClick={handleSubmit} className="w-2/3 m-auto mt-6 !bg-deep-purple !focus:bg-deep-purple hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">Upload your project</Button>
       </form>
+      </div>
+      </Card>
     </>
   )
 }

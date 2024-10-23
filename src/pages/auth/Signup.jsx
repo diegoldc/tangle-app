@@ -84,6 +84,7 @@ function Signup() {
               />
           </div>
           <div>
+            <p className="m-auto mb-3 w-6/12 min-w-40 text-gray-500 dark:text-gray-500" >Password must have al least one lower case, one higher case letter and a number</p>
             <div className="mb-2 block">
               <Label htmlFor="password" value="Password" />
             </div>
@@ -110,9 +111,9 @@ function Signup() {
             shadow />
           </div>
           <Button type="submit" className="w-2/3 m-auto mt-6 !bg-deep-purple !hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 focus:outline-none dark:focus:ring-purple-800">Register new account</Button>
-          {errorMessage && <div>{errorMessage}</div>}
+          {errorMessage && <div className="text-red-500">{errorMessage}</div>}
           <hr />
-          <p>Already registered? <Link to="/login">Click here</Link></p>
+          <p>Already registered? <Link to="/login"><span style={{textDecoration:"underline"}}>Click here</span></Link></p>
         </form>
 
         </div>

@@ -43,7 +43,7 @@ function HomePage() {
 
   return (
     <div style={{ position: "relative" }}>
-      <SearchBar />
+      <SearchBar style={"smallSearchBar"} />
       <HeroSection />
       <Card>
         <div

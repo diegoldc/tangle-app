@@ -15,18 +15,10 @@ function HeroSection() {
             backgroundPosition: "center",
           }}
         >
-          <div
-            style={{
-              flexGrow: 1,
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              alignItems: "center",
-              gap: "10px",
-            }}
+          <div className="container"
           >
-            <h1>Welcome to TANGLE</h1>
-            <p>
+            <h1 className="text-hero">Welcome to TANGLE</h1>
+            <p className="text-hero">
               In <strong>TANGLE</strong>, we help you develop inovative proyects
               and expand your skills. Discover new projects, enlarge your web
               and get tangled in it!
@@ -48,18 +40,9 @@ function HeroSection() {
             backgroundPosition: "center",
           }}
         >
-          <div
-            style={{
-              flexGrow: 1,
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              alignItems: "center",
-              gap: "10px",
-            }}
-          >
-            <h1>Welcome to TANGLE</h1>
-            <p>
+          <div className="container">
+            <h1 className="text-hero">Welcome to TANGLE</h1>
+            <p className="text-hero">
               In <strong>TANGLE</strong>, we help you develop inovative proyects
               and expand your skills. Discover new projects, enlarge your web
               and get tangled in it!

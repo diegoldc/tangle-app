@@ -22,7 +22,8 @@ import SearchTechPage from "./pages/SearchTechPage";
 import BannerLogin from "./components/BannerLogin"
 import imgLogo from "./assets/deep-purple-logo.png";
 import imgWeb from "./assets/web-purple.png";
-import  Footer  from "./components/Footer";
+import FooterBar from "./components/FooterBar";
+import SearchBar from "./components/SearchBar";
 
 
 
@@ -32,23 +33,22 @@ function App() {
 
   return (
     <div style={{position:"relative"}}>
+      <Navbar />
+      <SearchBar style={"bigSearchBar"} />
+
       <img
         src={imgWeb}
         alt="web"
-        style={{
-          width: "100px",
-          position: "absolute",
-          left: "75%",
-          top: "-30px",
-        }}
+        className="spider-web"
+      
       />
       <img
+      className="logo-tangle"
         src={imgLogo}
         alt="logo"
-        style={{ width: "60px", margin: "auto", marginBottom: "20px" }}
+
       />
 
-      <Navbar />
 
       <BannerLogin />
 
@@ -85,7 +85,8 @@ function App() {
         </Link>
       )}
       <hr />
-      <Footer />
+      <br />
+      <FooterBar />
     </div>
   );
 }
