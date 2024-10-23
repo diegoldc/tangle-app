@@ -5,11 +5,11 @@ function Medals({ userLevel }) {
     return medal === "Gold"
       ? "#FFD700"
       : medal === "Silver"
-      ? "#C0C0C0"
+      ? "#d6d6d6"
       : medal === "Bronce"
       ? "#CD7F32"
       : medal === "Stone"
-      ? "#A9A9A9"
+      ? "#7e7e7e"
       : "#e0e0e0";
   };
 
@@ -18,7 +18,7 @@ function Medals({ userLevel }) {
       <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
         MEDALS
       </h5>
-      {/* {Object.values(userLevel.medals).forEach((key) => key)} */}
+      
       <div
         style={{
           display: "flex",
@@ -37,7 +37,7 @@ function Medals({ userLevel }) {
             boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
           }}
         >
-          <p style={{fontWeight:"bold"}}>Projects<br/>{userLevel.medals.projects} </p>
+          <p style={{fontWeight:"bold"}}>Projects<br/>{userLevel.medals.projects === "Bronce" ? "Bronze" : userLevel.medals.projects} </p>
         </div>
 
         <div
@@ -50,7 +50,7 @@ function Medals({ userLevel }) {
             boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
           }}
         >
-          <p style={{fontWeight:"bold"}}>Following<br/>{userLevel.medals.following} </p>
+          <p style={{fontWeight:"bold"}}>Following<br/>{userLevel.medals.following === "Bronce" ? "Bronze" : userLevel.medals.following} </p>
         </div>
 
         <div
@@ -63,7 +63,7 @@ function Medals({ userLevel }) {
             boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
           }}
         >
-          <p style={{fontWeight:"bold"}}>Followers<br/>{userLevel.medals.followers} </p>
+          <p style={{fontWeight:"bold"}}>Followers<br/>{userLevel.medals.followers === "Bronce" ? "Bronze" : userLevel.medals.followers} </p>
         </div>
 
         <div
@@ -76,7 +76,7 @@ function Medals({ userLevel }) {
             boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
           }}
         >
-          <p style={{fontWeight:"bold"}}>Comments<br/>{userLevel.medals.comments} </p>
+          <p style={{fontWeight:"bold"}}>Comments<br/>{userLevel.medals.comments === "Bronce" ? "Bronze" : userLevel.medals.comments} </p>
         </div>
 
         <div
@@ -89,7 +89,7 @@ function Medals({ userLevel }) {
             boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
           }}
         >
-          <p style={{fontWeight:"bold"}}>Likes<br/>{userLevel.medals.likes} </p>
+          <p style={{fontWeight:"bold"}}>Likes<br/>{userLevel.medals.likes === "Bronce" ? "Bronze" : userLevel.medals.likes} </p>
         </div>
       </div>
     </Card>

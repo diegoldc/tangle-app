@@ -2,7 +2,7 @@ import { AuthContext } from "../context/auth.context";
 import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 
-import imgLogo from "../assets/forms-logo.png";
+import imgLogo from "../assets/white-logo.png";
 
 function Banner() {
   const [showBanner, setShowBanner] = useState(true);
@@ -22,14 +22,14 @@ function Banner() {
           className="fixed z-50 flex w-[calc(100%-2rem)] p-4 -translate-x-1/2 bg-white border border-gray-100 rounded-lg shadow-sm lg:max-w-7xl left-1/2 top-6 dark:bg-gray-700 dark:border-gray-600 gap-2"
           style={{flexDirection:"row",justifyContent:"space-between",alignItems:"center"}}
         >
-          <div className="flex flex-col items-start mb-3 me-4 md:items-center md:flex-row md:mb-0">
+          <div className="flex flex-col items-start me-1 md:items-center md:flex-row md:mb-0">
             <Link to={`/`}
               className="flex items-center mb-2 border-gray-200 md:pe-4 md:me-4 md:border-e md:mb-0 dark:border-gray-600"
             >
-              <img src={imgLogo} className="h-6 me-2" alt="Tangle Logo" />
-              <span className="self-center text-lg font-semibold whitespace-nowrap dark:text-white">
+              <img src={imgLogo} className="h-6 me-2 w-32 h-auto flex" alt="Tangle Logo" />
+              {/* <span className="self-center text-lg font-semibold whitespace-nowrap dark:text-white">
                 Tangle
-              </span>
+              </span> */}
             </Link>
           </div>
           <div>

@@ -197,12 +197,12 @@ function ProjectPage() {
                 </Button>
               </Popover>
             )}
-            <h1 style={{fontSize:"2rem",fontWeight:"bold"}} >{name.toUpperCase()}</h1>
+            <h1 style={{fontSize:"2rem",fontWeight:"bold", overflow:"hidden"}} >{name.toUpperCase()}</h1>
             <Link to={`/profile/${user._id}`} >
               <Card className="m-7 p-0">
                 <div className="p-0 flex flex-row justify-center gap-5 items-center">
                   <Avatar size="md" img={user.img} rounded />
-                  <h5 style={{fontSize:"1.5rem"}} >{user.username}</h5>
+                  <h5 style={{fontSize:"1.5rem",overflow:"hidden"}} >{user.username}</h5>
                 </div>
               </Card>
             </Link>

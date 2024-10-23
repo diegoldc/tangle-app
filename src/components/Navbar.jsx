@@ -1,13 +1,15 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
-import imgMenu from "../assets/burger.png";
-import imgLogout from "../assets/logout.png";
-import imgHome from "../assets/home.png";
-import imgNetwork from "../assets/network.png";
+import { GiHamburgerMenu } from "react-icons/gi";
 import service from "../services/config";
 import { Spinner } from "flowbite-react";
 import { ThemeContext } from "../context/theme.context";
+import { GiSpiderWeb } from "react-icons/gi";
+import { IoHomeOutline } from "react-icons/io5";
+import { RiLogoutBoxRLine } from "react-icons/ri";
+import { RiLoginBoxLine } from "react-icons/ri";
+import { BsPencilSquare } from "react-icons/bs";
 
 function Navbar() {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
@@ -18,14 +20,16 @@ function Navbar() {
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [isLoggedIn]);
 
   const getData = async () => {
-    try {
-      const response = await service.get(`/users/${loggedUserId}`);
-      setUserImage(response.data.img);
-    } catch (error) {
-      console.log("error al traer la imagen de usuario");
+    if(isLoggedIn){
+      try {
+        const response = await service.get(`/users/${loggedUserId}`);
+        setUserImage(response.data.img);
+      } catch (error) {
+        console.log("error al traer la imagen de usuario");
+      }
     }
   };
 
@@ -41,25 +45,17 @@ function Navbar() {
     }
   };
 
-  if (userImage === null) {
-    return (
-      <div>
-        <Spinner />
-      </div>
-    );
-  }
-
   return (
     <nav className="navBar">
       <Link to="/">
         <button className="navButton">
-          <img src={imgHome} alt="menu" style={{ width: "20px" }} />
+        <IoHomeOutline style={{width:"40px", height:"auto"}}/>
         </button>
       </Link>
       {isLoggedIn && (
         <Link to="/projects/my-network">
           <button className="navButton">
-            <img src={imgNetwork} alt="menu" style={{ width: "20px" }} />
+          <GiSpiderWeb style={{width:"40px", height:"auto"}}/>
           </button>
         </Link>
       )}
@@ -70,8 +66,8 @@ function Navbar() {
               src={userImage}
               alt="user-image"
               style={{
-                width: "20px",
-                height: "20px",
+                width: "40px",
+                height: "40px",
                 borderRadius: "50%",
                 objectFit: "cover",
               }}
@@ -80,7 +76,7 @@ function Navbar() {
         </Link>
       )}
       <button className="navButton" onClick={toggleSettings}>
-        <img src={imgMenu} alt="menu" style={{ width: "20px" }} />
+      <GiHamburgerMenu style={{width:"40px", height:"auto"}}/>
       </button>
       <div className={`burgerMenu ${isSettingsOpen && "showBurger"}`}>
         <label className="ui-switch">
@@ -96,15 +92,15 @@ function Navbar() {
 
         {isLoggedIn ? (
           <button className="navButton" onClick={handleLogout}>
-            <img src={imgLogout} alt="logout" style={{ width: "20px" }} />
+            <RiLogoutBoxRLine style={{width:"40px", height:"auto"}}/>
           </button>
         ) : (
           <>
             <Link to="/login">
-              <button className="navButton">Log in</button>
+              <button className="navButton"><RiLoginBoxLine style={{width:"40px", height:"auto"}}/></button>
             </Link>
             <Link to="/signup">
-              <button className="navButton">Sign up</button>
+              <button className="navButton"><BsPencilSquare style={{width:"40px", height:"auto"}} /></button>
             </Link>
           </>
         )}

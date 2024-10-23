@@ -20,6 +20,10 @@ import ChangePasswordPage from "./pages/ChangePasswordPage";
 import SearchUserPage from "./pages/SearchUserPage";
 import SearchTechPage from "./pages/SearchTechPage";
 import BannerLogin from "./components/BannerLogin"
+import imgLogo from "./assets/deep-purple-logo.png";
+import imgWeb from "./assets/web-purple.png";
+import  Footer  from "./components/Footer";
+
 
 
 function App() {
@@ -27,7 +31,23 @@ function App() {
 
 
   return (
-    <div>
+    <div style={{position:"relative"}}>
+      <img
+        src={imgWeb}
+        alt="web"
+        style={{
+          width: "100px",
+          position: "absolute",
+          left: "75%",
+          top: "-30px",
+        }}
+      />
+      <img
+        src={imgLogo}
+        alt="logo"
+        style={{ width: "60px", margin: "auto", marginBottom: "20px" }}
+      />
+
       <Navbar />
 
       <BannerLogin />
@@ -64,6 +84,8 @@ function App() {
           <button className="addProjectBtn"><span className="plusBtn" >+</span> Add Project</button>
         </Link>
       )}
+      <hr />
+      <Footer />
     </div>
   );
 }

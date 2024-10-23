@@ -43,12 +43,12 @@ function Login() {
       <Card className="m-auto w-10/12 mt-10 authCard">
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 visible">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-            <img
+            {/* <img
               alt="Your Company"
               src={formLogo}
               className="mx-auto h-10 w-auto"
-            />
-            <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+            /> */}
+            <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight">
               Log in to your TANGLE account
             </h2>
           </div>

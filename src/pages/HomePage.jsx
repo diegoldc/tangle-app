@@ -4,10 +4,8 @@ import { Link } from "react-router-dom";
 import SearchBar from "../components/SearchBar";
 import { Card, Avatar, Badge, Spinner, Button } from "flowbite-react";
 import ProjectCard from "../components/ProjectCard";
-import imgLogo from "../assets/white-logo.png";
-import imgWeb from "../assets/web-purple.png";
-import imgBack from "../assets/back.png";
 import { ThemeContext } from "../context/theme.context";
+import HeroSection from "../components/HeroSection";
 
 // import Image from "next/image";
 // import {
@@ -21,7 +19,6 @@ import { ThemeContext } from "../context/theme.context";
 function HomePage() {
   const [allProjects, setAllProjects] = useState(null);
   const { theme, toggleTheme } = useContext(ThemeContext);
-
 
   useEffect(() => {
     getData();
@@ -46,67 +43,8 @@ function HomePage() {
 
   return (
     <div style={{ position: "relative" }}>
-      <img
-        src={imgWeb}
-        alt="web"
-        style={{
-          width: "100px",
-          position: "absolute",
-          left: "75%",
-          top: "-30px",
-        }}
-      />
-      <img
-        src={imgLogo}
-        alt="logo"
-        style={{ width: "60px", margin: "auto", marginBottom: "20px" }}
-      />
-
       <SearchBar />
-
-      <section
-        className="hero-section"
-        style={{  
-          backgroundImage: `url(${imgBack})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        {/* <div className="container" style={{ marginBottom: "50px" }}>
-    <img
-      src={imgLogo}
-      alt="Logo de la empresa"
-      style={{ width: "150px", margin: "20px" }}
-    />
-  </div> */}
-
-        <div
-          style={{
-            flexGrow: 1,
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-            alignItems: "center",
-            gap: "10px",
-          }}
-        >
-          <h1>
-            Welcome to Tangle
-          </h1>
-          <p>
-            En <strong>Tu Empresa</strong>, te ayudamos a desarrollar proyectos
-            innovadores y a adquirir nuevas habilidades tecnológicas. Descubre
-            nuestros proyectos y sumérgete en el mundo digital.
-          </p>
-
-          <Link to="/signup">
-            <Button className="!bg-deep-purple !focus:bg-deep-purple hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">
-              Sign up
-            </Button>
-          </Link>
-        </div>
-      </section>
-
+      <HeroSection />
       <Card>
         <div
           style={{

@@ -39,7 +39,7 @@ function MyNetworkProjectsPage() {
 
   return (
     <>
-      <h1 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">My Network</h1>
+      <h1 className="mt-10 mb-5 text-center text-2xl font-bold leading-9 tracking-tight ">My Network</h1>
       <Card>
         <div className="flex gap-5 flex-wrap">
           {projectsArr.length !== 0 ? (

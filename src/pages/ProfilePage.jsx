@@ -16,10 +16,10 @@ import UpdateAvatar from "../components/UpdateAvatar";
 import { FiEdit3 } from "react-icons/fi";
 import GetUserLevel from "../functions/GetUserLevel";
 import ProjectCard from "../components/ProjectCard";
-import imgGithub from "../assets/github-sign.png";
-import imgLinkedin from "../assets/linkedin-logo.png";
 import Medals from "../components/Medals";
 import { ThemeContext } from "../context/theme.context";
+import { AiOutlineGithub } from "react-icons/ai";
+import { AiOutlineLinkedin } from "react-icons/ai";
 
 function ProfilePage() {
   const { userId } = useParams();
@@ -121,9 +121,6 @@ function ProfilePage() {
 
   return (
     <>
-      <h1 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-        Profile
-      </h1>
       <div
         style={{
           display: "flex",
@@ -143,23 +140,31 @@ function ProfilePage() {
           {/*info - medallas - tech - following - followers*/}
           <Card className="" style={{ minWidth: "370px" }}>
             <Avatar img={userInfo.img} rounded size="xl" />
-            {userInfo._id === loggedUserId && (
-              <Popover
-                open={open}
-                onOpenChange={setOpen}
-                style={{ postition: "relative" }}
-                content={<UpdateAvatar getData={getData} setOpen={setOpen} />}
-              >
-                <h5 style={{ color: "grey", cursor: "pointer" }}>
-                  Edit Profile Picture
-                  <FiEdit3 color="rgb(200,200,200)" />
-                </h5>
-              </Popover>
-            )}
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+              }}
+            >
+              {userInfo._id === loggedUserId && (
+                <Popover
+                  open={open}
+                  onOpenChange={setOpen}
+                  style={{ postition: "relative" }}
+                  content={<UpdateAvatar getData={getData} setOpen={setOpen} />}
+                >
+                  <h5 style={{ color: "grey", cursor: "pointer" }}>
+                    Edit Profile Picture
+                    <FiEdit3 color="rgb(200,200,200)" />
+                  </h5>
+                </Popover>
+              )}
+            </div>
             <p className="text-5xl font-bold tracking-tight text-gray-900 dark:text-white max-w-full break-all">
               {userInfo.username}
             </p>
-            <p>spider level: {userLevel.level}</p>
+            <p>Spider Level: {userLevel.level}</p>
             {userInfo.firstName && userInfo.lastName ? (
               <h5>
                 {userInfo.firstName} {userInfo.lastName}{" "}
@@ -182,12 +187,12 @@ function ProfilePage() {
             <div
               style={{ display: "flex", justifyContent: "center", gap: "10px" }}
             >
-              <a href={`https://${userInfo.linkedin}`}>
-                <img className="urlIcon" src={imgLinkedin} alt="linkedin" />
-              </a>
-              <a href={`https://${userInfo.github}`}>
-                <img className="urlIcon" src={imgGithub} alt="github" />
-              </a>
+              <Link to={`https://${userInfo.linkedin}`}>
+                <AiOutlineLinkedin size={40}/>
+              </Link>
+              <Link to={`https://${userInfo.github}`}>
+                <AiOutlineGithub size={40}/>
+              </Link>
             </div>
           </Card>
 
@@ -294,7 +299,7 @@ function ProfilePage() {
             }}
           >
             {allProjects === null ? (
-              <div>...spinner</div>
+              <div><Spinner /></div>
             ) : (
               <>
                 {allProjects.length === 0 ? (

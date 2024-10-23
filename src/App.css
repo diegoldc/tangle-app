@@ -11,16 +11,17 @@ body {
 
 
 :root {
-  --bg-color-light: rgb(231, 212, 240);  
-  --detail-color: #673ab7;               
-  --bg-color: #d8b4fe;                  
+  --bg-color-light: rgb(231, 212, 240);
+  --detail-color: #673ab7;
+  --bg-color: #d8b4fe;
 }
 
 
 .dark {
-  --bg-color-light: #0f1a31;           
-  --detail-color: #bb86fc;              
-  --bg-color: #3700b3;                 
+  --bg-color-light: #1F2937;
+  --detail-color: #bb86fc;
+  --font-color:white;
+  --bg-color: #0f1a31;
 }
 
 #root {
@@ -28,7 +29,7 @@ body {
   padding: 20px;
   text-align: center;
   background-color: var(--bg-color-light); 
-  color: var(--detail-color);              
+  color: var(--font-color);              
 }
 
 
@@ -142,9 +143,9 @@ body {
   position: fixed;
   right: 50px;
   bottom: 50px;
-  background-color: rgb(229, 208, 248);
+  background-color: var(--bg-color);
   border-radius: 25px;
-  border: 4px solid #673ab7;
+  border: 4px solid var(--detail-color);
   font-size: 1.7rem;
   width: 50px;
   height: 50px;
@@ -246,8 +247,8 @@ button {
 .ui-switch {
   /* switch */
   --switch-bg: rgb(135, 150, 165);
-  --switch-width: 40px;
-  --switch-height: 20px;
+  --switch-width: 50px;
+  --switch-height: 25px;
   /* circle */
   --circle-diameter: 32px;
   --circle-inset: calc((var(--circle-diameter) - var(--switch-height)) / 2);
@@ -346,7 +347,6 @@ button {
 
 .about-container h1 {
   font-size: 2.5rem;
-  color: #333;
   text-align: center;
   margin-bottom: 20px;
 }
@@ -354,7 +354,6 @@ button {
 .about-container p {
   font-size: 1.2rem;
   line-height: 1.6;
-  color: #555;
   margin-bottom: 15px;
 }
 
