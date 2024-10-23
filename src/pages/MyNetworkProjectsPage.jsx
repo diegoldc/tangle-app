@@ -1,15 +1,18 @@
 import { useState, useEffect, useContext } from "react";
 import service from "../services/config";
 import { AuthContext } from "../context/auth.context";
-import { Card, Avatar } from "flowbite-react";
+import { Card, Avatar, Spinner } from "flowbite-react";
 import { Link } from "react-router-dom";
-import ProjectCard from "../components/ProjectCard";
+import ProjectCard from "../components/ProjectCard"
+
 
 function MyNetworkProjectsPage() {
   const { loggedUserId } = useContext(AuthContext);
 
+
   const [projectsArr, setProjectsArr] = useState(null);
   const [userIdArr, setUserIdArr] = useState([]);
+
 
   useEffect(() => {
     getData();
@@ -31,7 +34,7 @@ function MyNetworkProjectsPage() {
   };
 
   if (projectsArr === null) {
-    return <div>...spinner</div>;
+    return <Spinner/>;
   }
 
   return (

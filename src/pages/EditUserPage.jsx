@@ -1,4 +1,4 @@
-import { Avatar, Card, Button, Label, TextInput } from "flowbite-react";
+import { Avatar, Card, Button, Label, TextInput, Spinner } from "flowbite-react";
 import AddTechnologies from "../components/AddTechnologies";
 import { useState , useEffect } from "react";
 import { useNavigate , useParams , Link } from "react-router-dom";
@@ -60,7 +60,7 @@ function EditUserPage() {
   }
 
   if(username === null){
-    return <div>...spinner</div>
+    return <Spinner/>
   }
 
   return (

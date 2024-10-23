@@ -6,6 +6,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Avatar, Card, Button, Popover, Label, Modal, TextInput, Spinner } from "flowbite-react";
 import { FaTrashCan } from "react-icons/fa6";
 import { FiEdit3 } from "react-icons/fi";
+import { BiSolidLike , BiSolidDislike } from "react-icons/bi";
 import imgLikes from "../assets/likes.png"
 import ScreenshotsCarousel from "../components/ScreenshotsCarousel";
 
@@ -81,7 +82,11 @@ function ProjectPage() {
   };
 
   const handleMouseOver = () => {
-    setLikeText("Like");
+    if(isLiked){
+      setLikeText("Unlike");
+    } else {
+      setLikeText("Like");
+    }
   };
 
   const handleMouseOut = () => {
@@ -192,33 +197,85 @@ function ProjectPage() {
                 </Button>
               </Popover>
             )}
-            <h1>{name}</h1>
+            <h1 style={{fontSize:"2rem",fontWeight:"bold"}} >{name.toUpperCase()}</h1>
             <Link to={`/profile/${user._id}`} >
-            <h2>{user.username}</h2>
+              <Card className="m-7 p-0">
+                <div className="p-0 flex flex-row justify-center gap-5 items-center">
+                  <Avatar size="md" img={user.img} rounded />
+                  <h5 style={{fontSize:"1.5rem"}} >{user.username}</h5>
+                </div>
+              </Card>
             </Link>
-            <Avatar img={user.img} rounded />
-            <p>{description}</p>
+            <h4
+              style={{
+                marginBottom:"10px",
+                fontWeight:"bold"
+              }}
+            >Description:</h4>
+            <p
+              style={{
+                backgroundColor:"rgb(231, 212, 240,0.2)",
+                marginBottom:"30px",
+                padding:"10px",
+                borderRadius:"10px"
+              }}
+            >{description}</p>
+            {projectInfo.screenshots.length > 1 ? (<ScreenshotsCarousel projectInfo={projectInfo} />) : projectInfo.screenshots.length > 0 && (
+              <img src={projectInfo.screenshots[0]} />)}
 
-            {projectInfo && projectInfo.screenshots && (
-  <ScreenshotsCarousel projectInfo={projectInfo} />
-)}
+              {collaborators.length > 0 ? (
+            <div
+              style={{
+                margin:"40px auto",
+                display:"flex",
+                gap:"10px",
+                alignItems:"center",
+                justifyContent:"center"
+              }}
+            >
+                <div>
+                  Collaborators:
+                </div>
+                <Avatar.Group>
+                  {collaborators.map((collab,index) => {return(
+                    index < 4 && ( <Avatar key={collab._id} img={collab.img} rounded stacked /> )
+                  )})}
+                  {collaborators.length > 4 && <Avatar.Counter total={collaborators.length-4} /> }
+                </Avatar.Group>
+                
+            </div>
+              ) : ( null )}
 
-            <div className="mt-4 flex space-x-3 lg:mt-6 m-auto items-center">
-              <div style={{display:"flex", alignItems:"center", gap:"10px", backgroundColor:"grey", borderRadius:"5px", padding:"5px"}}>
-
-              <img style={{width:"31px"}} src={imgLikes}                
-                onClick={handleLike}
+            <div className="mt-4 flex space-x-3 lg:mt-6 m-auto items-center ">
+              <Button
+              className="!bg-deep-purple !focus:bg-deep-purple hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800 p-0"
+              // style={{display:"flex", alignItems:"center", gap:"10px", backgroundColor:"grey", borderRadius:"5px", padding:"5px"}}
                 onMouseOver={handleMouseOver}
                 onMouseOut={handleMouseOut}
-                />
-                <span >
-                  {likeText}
+                onClick={handleLike}
+
+              >
+                <div className=" flex flex-row w-12 h-6 items-center justify-around" >
+                  
+                  {isLiked ?(
+                    <BiSolidDislike
+                      className={`!h-4 w-auto ${likeText === "Unlike" && "hidden"} `}
+                    />
+                  ):(
+                    <BiSolidLike
+                      className="!h-4 w-auto"
+                      />
+                    )}
+
+                  <span >
+                    {likeText}
                   </span>
                 </div>
+              </Button>
               
               {user._id === loggedUserId && (
                 <Link to={`/projects/${projectId}/update`}>
-                  <Button>Edit</Button>
+                  <Button className="!bg-deep-purple !focus:bg-deep-purple hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800" >Edit</Button>
                 </Link>
               )}
             </div>
@@ -249,7 +306,7 @@ function ProjectPage() {
                   }}
                 ></textarea>
               </div>
-              <Button type="submit">Post comment</Button>
+              <Button className="!bg-deep-purple !focus:bg-deep-purple hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800" type="submit">Post comment</Button>
             </form>
             {allComments.map((comment, index) => {
               return (
@@ -261,24 +318,30 @@ function ProjectPage() {
                     style={{ overflow: "hidden" }}
                   >
                     <div className="flex justify-between items-center mb-2">
-                      <div className="flex items-center">
-                        <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold">
+                      <div className="flex justify-start items-start">
+                        <div className="flex justify-start mr-4 items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold">
                           <img
                             className="mr-2 w-6 h-6 rounded-full"
                             src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
                             alt="Michael Gough"
                           />
                           {comment.user.username}
-                        </p>
-                        <p
+                        </div>
+                        <div
                           className="text-gray-500 dark:text-gray-400 max-w-full"
                           style={{ overflow: "hidden" }}
                         >
                           {comment.content}
-                        </p>
                         {comment.createdAt !== comment.updatedAt && (
-                          <p>(Editado)</p>
+                          <span
+                          style={{
+                            fontWeight:"bold",
+                            fontSize:"0.6rem",
+                            color:"grey"
+                          }}
+                          >&nbsp;&nbsp;(Editado)</span>
                         )}
+                        </div>
                       </div>
                     </div>
 

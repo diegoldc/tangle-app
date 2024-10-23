@@ -1,7 +1,7 @@
 import { useParams , Link } from 'react-router-dom'
 import service from '../services/config'
 import { useState , useEffect } from 'react'
-import { Card , Avatar } from 'flowbite-react'
+import { Card , Avatar, Spinner } from 'flowbite-react'
 
 function SearchTechPage() {
 
@@ -23,7 +23,7 @@ function SearchTechPage() {
   }
 
   if (allProjects === null) {
-    return <div>...spinner</div>;
+    return <Spinner/>;
   }
 
   return (

@@ -1,4 +1,4 @@
-import { Button, Label, TextInput, Textarea } from "flowbite-react";
+import { Button, Label, TextInput, Textarea, Spinner } from "flowbite-react";
 import AddTechnologies from "../components/AddTechnologies";
 import AddCollaborators from "../components/AddCollaborators";
 import { useState , useContext , useEffect } from "react";
@@ -74,7 +74,7 @@ function EditProjectPage() {
   }
   
   if(creationDate === null){
-    return <div>...spinner</div>
+    return <Spinner />
   }
 
   return (

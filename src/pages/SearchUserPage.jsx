@@ -1,7 +1,7 @@
 import { useLocation , Link } from 'react-router-dom'
 import service from '../services/config'
 import { useState , useEffect } from 'react'
-import { Card , Avatar } from 'flowbite-react'
+import { Card , Avatar, Spinner } from 'flowbite-react'
 
 function FilterPage() {
 
@@ -24,7 +24,7 @@ function FilterPage() {
   }
 
   if(users === null){
-    return <div>...spinner</div>
+    return <Spinner/>
   }
 
 

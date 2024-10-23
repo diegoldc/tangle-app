@@ -1,11 +1,13 @@
-import { useState , useEffect } from "react"
-import service from "../services/config"
-import { Link } from "react-router-dom"
-import SearchBar from "../components/SearchBar"
-import { Card , Avatar, Badge, Spinner } from "flowbite-react";
+import { useState, useEffect, useContext } from "react";
+import service from "../services/config";
+import { Link } from "react-router-dom";
+import SearchBar from "../components/SearchBar";
+import { Card, Avatar, Badge, Spinner, Button } from "flowbite-react";
 import ProjectCard from "../components/ProjectCard";
-import imgLogo from "../assets/white-logo.png"
-import imgWeb from "../assets/web2.png"
+import imgLogo from "../assets/white-logo.png";
+import imgWeb from "../assets/web-purple.png";
+import imgBack from "../assets/back.png";
+import { ThemeContext } from "../context/theme.context";
 
 // import Image from "next/image";
 // import {
@@ -16,56 +18,119 @@ import imgWeb from "../assets/web2.png"
 //   Avatar,
 // } from "@material-tailwind/react";
 
-
-
 function HomePage() {
+  const [allProjects, setAllProjects] = useState(null);
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
-  const [allProjects, setAllProjects] = useState(null)
-    
 
   useEffect(() => {
-    getData()
-  },[])
-  
+    getData();
+  }, []);
+
   const getData = async () => {
     try {
-      const response = await service.get("/projects")
-      setAllProjects(response.data)
+      const response = await service.get("/projects");
+      setAllProjects(response.data);
     } catch (error) {
-      console.log("error al traer proyectos",error)
+      console.log("error al traer proyectos", error);
     }
-  }
+  };
 
-  if(allProjects === null){
-    return <div><Spinner /></div>
+  if (allProjects === null) {
+    return (
+      <div>
+        <Spinner />
+      </div>
+    );
   }
 
   return (
-    <div style={{position:"relative"}}>
-    <img src={imgWeb} alt="web" style={{width:"100px" ,position: "absolute", left: "75%", top:"-30px"}}/>
-    <img src={imgLogo} alt="logo" style={{width:"60px", margin:"auto", marginBottom:"20px"}} />
+    <div style={{ position: "relative" }}>
+      <img
+        src={imgWeb}
+        alt="web"
+        style={{
+          width: "100px",
+          position: "absolute",
+          left: "75%",
+          top: "-30px",
+        }}
+      />
+      <img
+        src={imgLogo}
+        alt="logo"
+        style={{ width: "60px", margin: "auto", marginBottom: "20px" }}
+      />
 
-    <SearchBar />
-    <Card>
-    <div
-    style={{display:"flex",flexWrap:"wrap",gap:"15px",marginTop:"15px",justifyContent:"center"}}
-    
-    >
-    {allProjects.map((project) => {
-      return(
-        <Link to={`/projects/${project._id}`}>
-          <ProjectCard project={project} key={project._id} />
-        </Link> 
-      )
-    })}
+      <SearchBar />
+
+      <section
+        className="hero-section"
+        style={{  
+          backgroundImage: `url(${imgBack})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        {/* <div className="container" style={{ marginBottom: "50px" }}>
+    <img
+      src={imgLogo}
+      alt="Logo de la empresa"
+      style={{ width: "150px", margin: "20px" }}
+    />
+  </div> */}
+
+        <div
+          style={{
+            flexGrow: 1,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            alignItems: "center",
+            gap: "10px",
+          }}
+        >
+          <h1>
+            Welcome to Tangle
+          </h1>
+          <p>
+            En <strong>Tu Empresa</strong>, te ayudamos a desarrollar proyectos
+            innovadores y a adquirir nuevas habilidades tecnológicas. Descubre
+            nuestros proyectos y sumérgete en el mundo digital.
+          </p>
+
+          <Link to="/signup">
+            <Button className="!bg-deep-purple !focus:bg-deep-purple hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">
+              Sign up
+            </Button>
+          </Link>
+        </div>
+      </section>
+
+      <Card>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "15px",
+            marginTop: "15px",
+            justifyContent: "center",
+          }}
+        >
+          {allProjects.map((project) => {
+            return (
+              <Link to={`/projects/${project._id}`}>
+                <ProjectCard project={project} key={project._id} />
+              </Link>
+            );
+          })}
+        </div>
+      </Card>
     </div>
-</Card>
-    </div>
-  )
+  );
 }
 
-export default HomePage
-
+export default HomePage;
 
 /*
 import {

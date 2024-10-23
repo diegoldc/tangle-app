@@ -2,26 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
+
 html,
 body {
-  background-color: rgb(231, 212, 240);
   margin: 0;
+  background-color: var(--bg-color-light); 
+}
+
+
+:root {
+  --bg-color-light: rgb(231, 212, 240);  
+  --detail-color: #673ab7;               
+  --bg-color: #d8b4fe;                  
+}
+
+
+.dark {
+  --bg-color-light: #0f1a31;           
+  --detail-color: #bb86fc;              
+  --bg-color: #3700b3;                 
 }
 
 #root {
   margin: 0;
   padding: 20px;
   text-align: center;
-  --bg-color-light: rgb(231, 212, 240);
-  --detail-color: #673ab7;
-  --bg-color: #d8b4fe;
+  background-color: var(--bg-color-light); 
+  color: var(--detail-color);              
 }
+
+
 
 .navBar {
   position: fixed;
   top: 10px;
   left: 10px;
   z-index: 10;
+  display: flex;
 }
 
 .navButton {
@@ -35,7 +52,11 @@ body {
   box-shadow: 3px 3px var(--detail-color);
   cursor: pointer;
   margin: 5px 0;
+  display: flex;
+  justify-content: center;
+
 }
+
 
 .navButton:active {
   box-shadow: none;
@@ -80,6 +101,42 @@ body {
   right: 5px;
   transform: rotate(45deg);
 }
+
+.hero-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  text-align: center;
+  position: relative; 
+  padding: 20px;
+  background-color: #f4f4f4;
+  height: 55vh;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.hero-section .container {
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-section h1 {
+  font-size: 2em; 
+  color: #d8b4fe; 
+}
+
+.hero-section p {
+  font-size: 1em; 
+  color: #d8b4fe; 
+  max-width: 600px; 
+  margin: 0 5px;
+  position: absolute;
+  top: 65%;
+}
+
+
+
 
 .addProjectBtn {
   position: fixed;
@@ -189,7 +246,7 @@ button {
 .ui-switch {
   /* switch */
   --switch-bg: rgb(135, 150, 165);
-  --switch-width: 48px;
+  --switch-width: 40px;
   --switch-height: 20px;
   /* circle */
   --circle-diameter: 32px;
@@ -315,3 +372,4 @@ button {
     transform: rotate(360deg);
   }
 }
+
