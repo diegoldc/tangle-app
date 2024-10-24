@@ -32,7 +32,7 @@ function ProfilePage() {
   const [userLevel, setUserLevel] = useState(null);
   const [commentsArr, setCommentsArr] = useState([]);
 
-  const { loggedUserId } = useContext(AuthContext);
+  const { loggedUserId , isLoggedIn } = useContext(AuthContext);
   const { theme, toggleTheme } = useContext(ThemeContext);
 
   useEffect(() => {
