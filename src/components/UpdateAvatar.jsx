@@ -1,16 +1,13 @@
 import { FileInput, Label, Button, Card } from "flowbite-react";
 import service from "../services/config";
-import { useState , useContext } from "react";
+import { useState, useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 
+function UpdateAvatar({ getData, setOpen }) {
+  const { loggedUserId, setLoggedUserImg } = useContext(AuthContext);
 
-function UpdateAvatar({getData,setOpen}) {
+  const [img, setImg] = useState("");
 
-  const { loggedUserId , setLoggedUserImg } = useContext(AuthContext);
-
-
-  const [img, setImg] = useState("")
-  
   const previewFiles = (file) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -20,21 +17,22 @@ function UpdateAvatar({getData,setOpen}) {
   };
 
   const handleImgChange = (e) => {
-    console.log(e.target.files[0])
-    previewFiles(e.target.files[0])
-  }
+    previewFiles(e.target.files[0]);
+  };
 
   const handleImgUpload = async () => {
     try {
-      const response = await service.post("/upload-img", {image: img}, {})
-      await service.patch(`/users/${loggedUserId}/profile`,{img:response.data.url})
-      setLoggedUserImg(response.data.url)
-      getData()
-      setOpen(false)
+      const response = await service.post("/upload-img", { image: img }, {});
+      await service.patch(`/users/${loggedUserId}/profile`, {
+        img: response.data.url,
+      });
+      setLoggedUserImg(response.data.url);
+      getData();
+      setOpen(false);
     } catch (error) {
-      console.log("error al actualizar la imagen de usuario", error)
+      console.log("error al actualizar la imagen de usuario", error);
     }
-  }
+  };
 
   return (
     <Card className="flex w-full items-center justify-center">
@@ -61,13 +59,24 @@ function UpdateAvatar({getData,setOpen}) {
           <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
             <span className="font-semibold">Click to upload</span>
           </p>
-          <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG or JPG</p>
+          <p className="text-xs text-gray-500 dark:text-gray-400">
+            SVG, PNG or JPG
+          </p>
         </div>
-      <Button className="!bg-deep-purple !focus:bg-deep-purple hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800" onClick={handleImgUpload} >Update Picture</Button>
-        <FileInput onChange={handleImgChange} id="dropzone-file" className="hidden" />
+        <Button
+          className="!bg-deep-purple !focus:bg-deep-purple hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800"
+          onClick={handleImgUpload}
+        >
+          Update Picture
+        </Button>
+        <FileInput
+          onChange={handleImgChange}
+          id="dropzone-file"
+          className="hidden"
+        />
       </Label>
     </Card>
   );
 }
 
-export default UpdateAvatar
+export default UpdateAvatar;

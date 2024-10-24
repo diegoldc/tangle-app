@@ -1,6 +1,14 @@
 import { useEffect, useState, useContext } from "react";
 import service from "../services/config";
-import { Avatar, Dropdown, Button, Label, TextInput, Toast, Card } from "flowbite-react";
+import {
+  Avatar,
+  Dropdown,
+  Button,
+  Label,
+  TextInput,
+  Toast,
+  Card,
+} from "flowbite-react";
 import { AuthContext } from "../context/auth.context";
 import { HiCheck, HiX } from "react-icons/hi";
 
@@ -45,14 +53,11 @@ function AddCollaborators({ collaborators, setCollaborators }) {
   };
 
   const handleRemoveCollab = (collabToRemove) => {
-
-      setCollaborators(
-        collaborators.filter(
-          (collaborator) => collaborator._id !== collabToRemove._id
-        )
-      );
-    console.log(collaborators);
-    console.log(collabToRemove);
+    setCollaborators(
+      collaborators.filter(
+        (collaborator) => collaborator._id !== collabToRemove._id
+      )
+    );
   };
 
   return (
@@ -78,7 +83,12 @@ function AddCollaborators({ collaborators, setCollaborators }) {
                       onClick={() => handleAddCollaborator(user)}
                       key={index}
                     >
-                      <Avatar img={user.img} rounded size="sm" className="m-5" />
+                      <Avatar
+                        img={user.img}
+                        rounded
+                        size="sm"
+                        className="m-5"
+                      />
                       <p>{user.username}</p>
                     </li>
                   );
@@ -94,51 +104,28 @@ function AddCollaborators({ collaborators, setCollaborators }) {
         />
       </div>
 
-      <div style={{marginTop: "5px"}}>
+      <div style={{ marginTop: "5px" }}>
         <Label value="Collaborators added:" />
         <div className="flex flex-col gap-4 mt-2">
           {collaborators.map((collab, index) => (
-            // <Toast key={index}>
-            //   <div
-
-            //     className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-green-100 text-green-500 dark:bg-green-800 dark:text-green-200"
-            //   >
-            //     {/* <button
-            //       type="button"
-            //       onClick={() => handleRemoveCollab(collab)}
-            //       className="text-red-500 hover:text-red-700"
-            //       >
-            //       x
-            //     </button> */}
-            //     <HiCheck className="h-5 w-5" />
-            //   </div>
-            //     <div className="ml-3 text-sm font-normal">
-            //       {collab.username}
-            //     </div>
-            //     <Toast.Toggle onClick={() => handleRemoveCollab(collab)} />
-            // </Toast>
-
             <Card>
-              <div className="flex flex-row justify-between" >
+              <div className="flex flex-row justify-between">
                 <div className="flex flex-row">
-                <Avatar img={collab.img} size="xs" rounded />
-                <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  {collab.username}
-                </h5>
+                  <Avatar img={collab.img} size="xs" rounded />
+                  <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                    {collab.username}
+                  </h5>
                 </div>
                 <div>
-                <button
-                  type="button"
-                  onClick={() => handleRemoveCollab(collab)}
-                  className="text-purple-800 hover:text-purple-700"
+                  <button
+                    type="button"
+                    onClick={() => handleRemoveCollab(collab)}
+                    className="text-purple-800 hover:text-purple-700"
                   >
-                  x
-                </button>
-                    </div>
+                    x
+                  </button>
+                </div>
               </div>
-              {/* <p className="font-normal text-gray-700 dark:text-gray-400">
-  Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.
-</p> */}
             </Card>
           ))}
         </div>

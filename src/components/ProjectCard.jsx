@@ -60,7 +60,7 @@ function ProjectCard({ project }) {
         )}
 
         <div className="flex items-center gap-2">
-        <FaCalendarDays />
+          <FaCalendarDays />
           {new Date(project.creationDate).toLocaleDateString()}
         </div>
       </div>
@@ -103,12 +103,12 @@ function ProjectCard({ project }) {
         </Card>
       ) : (
         <Card className="dark:border-1 dark:border-purple-200">
-                    <div className="flex flex-row justify-center gap-2 items-center">
+          <div className="flex flex-row justify-center gap-2 items-center">
             <span className="text-md font-bold tracking-tight text-gray-900 dark:text-white overflow-hidden h-10 flex items-center">
               Collaborators:
             </span>
-              <RxValueNone size={35} />
-            </div>
+            <RxValueNone size={35} />
+          </div>
         </Card>
       )}
 

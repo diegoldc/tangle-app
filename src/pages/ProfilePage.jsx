@@ -37,9 +37,9 @@ function ProfilePage() {
   const [userLevel, setUserLevel] = useState(null);
   const [commentsArr, setCommentsArr] = useState([]);
 
-  const { loggedUserId , isLoggedIn } = useContext(AuthContext);
+  const { loggedUserId, isLoggedIn } = useContext(AuthContext);
   const { theme, toggleTheme } = useContext(ThemeContext);
-  const [collabProjects, setCollabProjects] = useState(null)
+  const [collabProjects, setCollabProjects] = useState(null);
 
   useEffect(() => {
     getData();
@@ -54,9 +54,6 @@ function ProfilePage() {
   const level = async () => {
     try {
       setUserLevel(
-        GetUserLevel(allProjects, commentsArr, userInfo.following, followersArr)
-      );
-      console.log(
         GetUserLevel(allProjects, commentsArr, userInfo.following, followersArr)
       );
     } catch (error) {
@@ -77,8 +74,10 @@ function ProfilePage() {
       setAllProjects(projectsInfo.data);
       setFollowersArr(followersData.data);
 
-      const collaborationsData = await service.get(`projects/collaborations/${userId}`)
-      setCollabProjects(collaborationsData.data)
+      const collaborationsData = await service.get(
+        `projects/collaborations/${userId}`
+      );
+      setCollabProjects(collaborationsData.data);
 
       const userFollowsProfile = followersData.data.filter(
         (user) => user._id === loggedUserId
@@ -89,7 +88,6 @@ function ProfilePage() {
       } else {
         setIsFollowed(true);
       }
-      // console.log("followers",followersData.data)
     } catch (error) {
       console.log("error al traer la info de usuario o proyectos", error);
     }
@@ -146,7 +144,6 @@ function ProfilePage() {
             gap: "10px",
           }}
         >
-          {/*info - medallas - tech - following - followers*/}
           <Card className="" style={{ minWidth: "370px" }}>
             <Avatar img={userInfo.img} rounded size="xl" />
             <div
@@ -173,17 +170,29 @@ function ProfilePage() {
             <p className="text-5xl font-bold tracking-tight text-gray-900 dark:text-white max-w-full break-all">
               {userInfo.username}
             </p>
-            
-            <div style={{display:"flex", flexDirection:"column", gap:"10px", justifyContent:"center",alignItems:"center"}}>
 
-            <p>Spider Level:</p>
-            {userLevel.level === "Garden Spider" && <GiLongLeggedSpider size={40}/>}
-            {userLevel.level === "Wolf Spider" && <GiHangingSpider size={40}/>}
-            {userLevel.level === "Redback" && <TbSpider size={40}/>}
-            {userLevel.level === "Tarantula" && <FaSpider size={40}/>}
-            {userLevel.level === "Black Widow" && <GiAngularSpider size={40}/>}
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "10px",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <p>Spider Level:</p>
+              {userLevel.level === "Garden Spider" && (
+                <GiLongLeggedSpider size={40} />
+              )}
+              {userLevel.level === "Wolf Spider" && (
+                <GiHangingSpider size={40} />
+              )}
+              {userLevel.level === "Redback" && <TbSpider size={40} />}
+              {userLevel.level === "Tarantula" && <FaSpider size={40} />}
+              {userLevel.level === "Black Widow" && (
+                <GiAngularSpider size={40} />
+              )}
               <p>{userLevel.level}</p>
-
             </div>
 
             {userInfo.firstName && userInfo.lastName ? (
@@ -192,13 +201,14 @@ function ProfilePage() {
               </h5>
             ) : null}
             {userInfo._id !== loggedUserId ? (
-              isLoggedIn &&
-              <Button
-                onClick={handleFollow}
-                className="w-2/3 m-auto mt-3 !bg-deep-purple !focus:bg-deep-purple hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800"
-              >
-                {isFollowed ? "Unfollow" : "Follow"}
-              </Button>
+              isLoggedIn && (
+                <Button
+                  onClick={handleFollow}
+                  className="w-2/3 m-auto mt-3 !bg-deep-purple !focus:bg-deep-purple hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800"
+                >
+                  {isFollowed ? "Unfollow" : "Follow"}
+                </Button>
+              )
             ) : (
               <Link to={`/profile/${loggedUserId}/my-info`}>
                 <Button className="w-2/3 m-auto mt-3 !bg-deep-purple !focus:bg-deep-purple hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">
@@ -210,10 +220,10 @@ function ProfilePage() {
               style={{ display: "flex", justifyContent: "center", gap: "10px" }}
             >
               <Link to={`https://${userInfo.linkedin}`}>
-                <AiOutlineLinkedin size={40}/>
+                <AiOutlineLinkedin size={40} />
               </Link>
               <Link to={`https://${userInfo.github}`}>
-                <AiOutlineGithub size={40}/>
+                <AiOutlineGithub size={40} />
               </Link>
             </div>
           </Card>
@@ -310,9 +320,7 @@ function ProfilePage() {
           </Card>
         </div>
 
-        <div
-          style={{display:"flex",flexDirection:"column",gap:"10px"}}
-        >
+        <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
           {/*proyectos*/}
           <Card
             style={{
@@ -322,41 +330,47 @@ function ProfilePage() {
               minWidth: "370px",
             }}
           >
-            <h1 style={{fontWeight:"bold"}}>{userInfo.username}'s Projects</h1>
+            <h1 style={{ fontWeight: "bold" }}>
+              {userInfo.username}'s Projects
+            </h1>
             {allProjects === null ? (
-              <div><Spinner /></div>
+              <div>
+                <Spinner />
+              </div>
             ) : (
               <>
                 {allProjects.length === 0 ? (
                   <div className="flex flex-col justify-center items-center gap-5 ">
                     <h1>No projects posted!</h1>
-                  {userId === loggedUserId &&
-                    <div className="flex flex-col justify-center items-center gap-5">
-                    <p>Add a new project here</p>
-                    <Link to="/projects/new-project">
-                      <Button className="!bg-deep-purple !focus:bg-deep-purple hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800" >Add a Project!</Button>
-                    </Link>
-                    </div>
-                    }
+                    {userId === loggedUserId && (
+                      <div className="flex flex-col justify-center items-center gap-5">
+                        <p>Add a new project here</p>
+                        <Link to="/projects/new-project">
+                          <Button className="!bg-deep-purple !focus:bg-deep-purple hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">
+                            Add a Project!
+                          </Button>
+                        </Link>
+                      </div>
+                    )}
                   </div>
                 ) : (
-                    <div
-                      style={{
-                        display: "flex",
-                        flexWrap: "wrap",
-                        gap: "15px",
-                        marginTop: "15px",
-                        justifyContent: "center",
-                      }}
-                    >
-                      {allProjects.map((project, index) => {
-                        return (
-                          <Link key={index} to={`/projects/${project._id}`}>
-                            <ProjectCard project={project} />
-                          </Link>
-                        );
-                      })}
-                    </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexWrap: "wrap",
+                      gap: "15px",
+                      marginTop: "15px",
+                      justifyContent: "center",
+                    }}
+                  >
+                    {allProjects.map((project, index) => {
+                      return (
+                        <Link key={index} to={`/projects/${project._id}`}>
+                          <ProjectCard project={project} />
+                        </Link>
+                      );
+                    })}
+                  </div>
                 )}
               </>
             )}
@@ -369,26 +383,30 @@ function ProfilePage() {
               minWidth: "370px",
             }}
           >
-            <h1 style={{fontWeight:"bold"}}>{userInfo.username}'s Collaborations</h1>
-            { collabProjects !== null ? (
-                    <div
-                    style={{
-                      display: "flex",
-                      flexWrap: "wrap",
-                      gap: "15px",
-                      marginTop: "15px",
-                      justifyContent: "center",
-                    }}
-                  >
-                    {collabProjects.map((project, index) => {
-                      return (
-                        <Link key={index} to={`/projects/${project._id}`}>
-                          <ProjectCard project={project} />
-                        </Link>
-                      );
-                    })}
-                  </div>
-          ) : (<p>{userInfo.name} hasn't collaborated in any projects </p>)}
+            <h1 style={{ fontWeight: "bold" }}>
+              {userInfo.username}'s Collaborations
+            </h1>
+            {collabProjects !== null ? (
+              <div
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: "15px",
+                  marginTop: "15px",
+                  justifyContent: "center",
+                }}
+              >
+                {collabProjects.map((project, index) => {
+                  return (
+                    <Link key={index} to={`/projects/${project._id}`}>
+                      <ProjectCard project={project} />
+                    </Link>
+                  );
+                })}
+              </div>
+            ) : (
+              <p>{userInfo.name} hasn't collaborated in any projects </p>
+            )}
           </Card>
         </div>
       </div>

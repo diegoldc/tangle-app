@@ -2,17 +2,14 @@ import React, { useState } from "react";
 import { Button, Label, TextInput, FileInput } from "flowbite-react";
 import service from "../services/config";
 
-
 function AddScreenshots(props) {
   const { screenshots, setScreenshots } = props;
   const [uploadPic, setUploadPic] = useState("");
   const [file, setFile] = useState("");
-  
+
   const handleImgChange = (e) => {
-    console.log(e.target.files[0]);
     setFile(e.target.files[0]);
     previewFiles(e.target.files[0]);
-    console.log(uploadPic);
   };
 
   const previewFiles = (file) => {
@@ -35,7 +32,6 @@ function AddScreenshots(props) {
       } else {
         setScreenshots((current) => [...current, response.data.url]);
       }
-      console.log(response.data);
     } catch (error) {
       console.log("error al subir una imagen a la nube", error);
     }
@@ -47,19 +43,6 @@ function AddScreenshots(props) {
 
   return (
     <>
-      {/* <div>
-        <input
-          id="screenshots"
-          type="file"
-          autoComplete="off"
-          // value={screenshots}
-          onChange={handleImgChange}
-          accept="image/png, image/jpeg, image/jpg"
-        />
-        <Button className="!bg-deep-purple !focus:bg-deep-purple hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800" type="button" onClick={handlePicUpload}>
-          Add
-        </Button>
-      </div> */}
       <Label
         htmlFor="dropzone-file"
         className="flex h-64 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:border-gray-500 dark:hover:bg-gray-600"
@@ -83,10 +66,21 @@ function AddScreenshots(props) {
           <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
             <span className="font-semibold">Click to upload</span>
           </p>
-          <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG or JPG</p>
+          <p className="text-xs text-gray-500 dark:text-gray-400">
+            SVG, PNG or JPG
+          </p>
         </div>
-      <Button className="!bg-deep-purple !focus:bg-deep-purple hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800" onClick={handlePicUpload} >Update Picture</Button>
-        <FileInput onChange={handleImgChange} id="dropzone-file" className="hidden" />
+        <Button
+          className="!bg-deep-purple !focus:bg-deep-purple hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800"
+          onClick={handlePicUpload}
+        >
+          Update Picture
+        </Button>
+        <FileInput
+          onChange={handleImgChange}
+          id="dropzone-file"
+          className="hidden"
+        />
       </Label>
       <ul
         style={{
@@ -94,10 +88,11 @@ function AddScreenshots(props) {
           flexWrap: "wrap",
           width: "100%",
           gap: "10px",
-          marginTop:"10px"
+          marginTop: "10px",
         }}
       >
-        {screenshots!== null && screenshots.length > 0 &&
+        {screenshots !== null &&
+          screenshots.length > 0 &&
           screenshots.map((img, index) => {
             return (
               <li key={index} style={{ position: "relative" }}>

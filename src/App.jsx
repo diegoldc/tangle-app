@@ -11,7 +11,6 @@ import ProfilePage from "./pages/ProfilePage";
 import ProjectPage from "./pages/ProjectPage";
 import AddProjectPage from "./pages/AddProjectPage";
 import EditProjectPage from "./pages/EditProjectPage";
-import FavouriteProjectsPage from "./pages/FavouriteProjectsPage";
 import MyNetworkPage from "./pages/MyNetworkProjectsPage";
 import AboutPage from "./pages/AboutPage";
 import NotFoundPage from "./pages/NotFoundPage";
@@ -67,10 +66,7 @@ function App() {
           path="/projects/:projectId/update"
           element={<Private><EditProjectPage /></Private>}
         />
-        <Route
-          path="/projects/favourites"
-          element={<Private><FavouriteProjectsPage /></Private>}
-        />
+        
         <Route path="/projects/my-network" element={<Private><MyNetworkPage /></Private>} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/profile/:userId/my-info" element={<Private><EditUserPage /></Private>} />

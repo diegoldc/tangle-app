@@ -3,47 +3,41 @@ import service from "../services/config";
 import { createContext, useEffect, useState } from "react";
 
 const API_URL = import.meta.env.VITE_API_URL;
-const AuthContext = createContext()
+const AuthContext = createContext();
 
-function AuthWrapper (props) {
-
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [loggedUserId, setLoggedUserId] = useState(null)
-  const [isValidatingToken, setIsValidatingToken] = useState(true)
-  const [loggedUserImg, setLoggedUserImg] = useState(null)
-  const [loggedUserName, setLoggedUserName] = useState(null)
+function AuthWrapper(props) {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loggedUserId, setLoggedUserId] = useState(null);
+  const [isValidatingToken, setIsValidatingToken] = useState(true);
+  const [loggedUserImg, setLoggedUserImg] = useState(null);
+  const [loggedUserName, setLoggedUserName] = useState(null);
 
   useEffect(() => {
+    authenticateUser();
+  }, []);
 
-    authenticateUser()
-  
-  }, [])
-  
   const authenticateUser = async () => {
-    
-    
     try {
-      const response = await service.get(`/auth/verify`)
-      const userData = await service.get(`/users/${response.data._id}`)
-      // console.log(response.data._id)
-      setIsLoggedIn(true)
-      setLoggedUserId(response.data._id)
-      setLoggedUserName(response.data.username)
-      // console.log(userData.data)
-      setLoggedUserImg(userData.data.img)
-      setIsValidatingToken(false)
-      
+      const response = await service.get(`/auth/verify`);
+      const userData = await service.get(`/users/${response.data._id}`);
+      setIsLoggedIn(true);
+      setLoggedUserId(response.data._id);
+      setLoggedUserName(response.data.username);
+      setLoggedUserImg(userData.data.img);
+      setIsValidatingToken(false);
     } catch (error) {
-      setIsLoggedIn(false)
-      setLoggedUserId(null)
-      setIsValidatingToken(false)
+      setIsLoggedIn(false);
+      setLoggedUserId(null);
+      setIsValidatingToken(false);
     }
+  };
 
-  }
-
-  if(isValidatingToken) {
-    return <h3><Spinner /></h3>
+  if (isValidatingToken) {
+    return (
+      <h3>
+        <Spinner />
+      </h3>
+    );
   }
 
   const passedContext = {
@@ -53,20 +47,14 @@ function AuthWrapper (props) {
     loggedUserImg,
     loggedUserName,
     setLoggedUserImg,
-    setLoggedUserName
-  }
-
+    setLoggedUserName,
+  };
 
   return (
     <AuthContext.Provider value={passedContext}>
       {props.children}
     </AuthContext.Provider>
-  )
-
+  );
 }
 
-export {
-  AuthContext,
-  AuthWrapper
-}
-
+export { AuthContext, AuthWrapper };

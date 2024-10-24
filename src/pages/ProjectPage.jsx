@@ -23,7 +23,6 @@ import { FaCalendarDays } from "react-icons/fa6";
 import { AiOutlineGithub } from "react-icons/ai";
 import { GrDeploy } from "react-icons/gr";
 
-
 function ProjectPage() {
   const { projectId } = useParams();
   const navigate = useNavigate();
@@ -37,7 +36,7 @@ function ProjectPage() {
   const [editedContent, setEditedContent] = useState("");
   const [editCommentId, setEditCommentId] = useState("");
 
-  const { loggedUserId , isLoggedIn } = useContext(AuthContext);
+  const { loggedUserId, isLoggedIn } = useContext(AuthContext);
 
   useEffect(() => {
     getData();
@@ -181,47 +180,45 @@ function ProjectPage() {
           <div className=" m-auto projectPageDisplay">
             <div className="flex flex-col justify-end px-4 pt-4 projectDetails ">
               <div className="flex flex-row justify-between">
-
-              {user._id === loggedUserId && (
-                <Popover
-                aria-labelledby="default-popover"
-                content={
-                  <div className="w-36 text-sm text-gray-500 dark:text-gray-400">
-                      <div className="border-b border-gray-200 bg-gray-100 px-3 py-2 dark:border-gray-600 dark:bg-gray-700">
-                        <h3
-                          id="default-popover"
-                          className="font-semibold text-gray-900 dark:text-white"
+                {user._id === loggedUserId && (
+                  <Popover
+                    aria-labelledby="default-popover"
+                    content={
+                      <div className="w-36 text-sm text-gray-500 dark:text-gray-400">
+                        <div className="border-b border-gray-200 bg-gray-100 px-3 py-2 dark:border-gray-600 dark:bg-gray-700">
+                          <h3
+                            id="default-popover"
+                            className="font-semibold text-gray-900 dark:text-white"
                           >
-                          Are you sure you want to delete this project?
-                        </h3>
-                      </div>
-                      <div
-                        className="px-3 py-2"
-                        style={{ cursor: "pointer" }}
-                        onClick={handleDeleteProject}
+                            Are you sure you want to delete this project?
+                          </h3>
+                        </div>
+                        <div
+                          className="px-3 py-2"
+                          style={{ cursor: "pointer" }}
+                          onClick={handleDeleteProject}
                         >
-                        <p>Delete this project</p>
+                          <p>Delete this project</p>
+                        </div>
                       </div>
-                    </div>
-                  }
+                    }
                   >
-                  <Button
-                    style={{
-                      width: "40px",
-                      height: "40px",
-                      background: "transparent",
-                    }}
-                  >
-                    <FaTrashCan color="rgb(200,200,200)" />
-                  </Button>
-                </Popover>
-              )}
+                    <Button
+                      style={{
+                        width: "40px",
+                        height: "40px",
+                        background: "transparent",
+                      }}
+                    >
+                      <FaTrashCan color="rgb(200,200,200)" />
+                    </Button>
+                  </Popover>
+                )}
 
-              <div className="flex items-center gap-2">
-                <FaCalendarDays />
-                {new Date(projectInfo.creationDate).toLocaleDateString()}
-              </div>
-
+                <div className="flex items-center gap-2">
+                  <FaCalendarDays />
+                  {new Date(projectInfo.creationDate).toLocaleDateString()}
+                </div>
               </div>
               <h1
                 style={{
@@ -229,7 +226,7 @@ function ProjectPage() {
                   fontWeight: "bold",
                   overflow: "hidden",
                 }}
-                >
+              >
                 {name.toUpperCase()}
               </h1>
               <Link to={`/profile/${user._id}`}>
@@ -242,22 +239,22 @@ function ProjectPage() {
                   </div>
                 </Card>
               </Link>
-              <div className="flex flex-row justify-center items-center gap-5 mb-7" >
+              <div className="flex flex-row justify-center items-center gap-5 mb-7">
                 <Link to={`https://${projectInfo.github}`}>
-                <Button className="!bg-deep-purple !focus:bg-deep-purple hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800" >
-                  <div className="flex flex-row gap-3 justify-around items-center">
-                  <AiOutlineGithub />
-                  <p>Git Hub Repo</p>
-                  </div>
-                </Button>
+                  <Button className="!bg-deep-purple !focus:bg-deep-purple hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">
+                    <div className="flex flex-row gap-3 justify-around items-center">
+                      <AiOutlineGithub />
+                      <p>Git Hub Repo</p>
+                    </div>
+                  </Button>
                 </Link>
                 <Link to={`https://${projectInfo.deployment}`}>
-                <Button className="!bg-deep-purple !focus:bg-deep-purple hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800" >
-                  <div className="flex flex-row gap-3 justify-around items-center">
-                  <GrDeploy />
-                  <p>Deployed Project</p>
-                  </div>
-                </Button>
+                  <Button className="!bg-deep-purple !focus:bg-deep-purple hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">
+                    <div className="flex flex-row gap-3 justify-around items-center">
+                      <GrDeploy />
+                      <p>Deployed Project</p>
+                    </div>
+                  </Button>
                 </Link>
               </div>
               <h4
@@ -279,16 +276,15 @@ function ProjectPage() {
                 {description}
               </p>
 
-                <p style={{fontWeight:"bold",marginBottom:"10px"}} >Technologies:</p>
+              <p style={{ fontWeight: "bold", marginBottom: "10px" }}>
+                Technologies:
+              </p>
               <div className="mb-10 flex flex-row flex-wrap gap-3 bg-purple-200 dark:bg-logo-purple w-auto min-w-60 h-auto p-2 justify-center rounded-lg">
-                {tech.map(
-                  (tech, index) =>
-                    (
-                      <Badge key={index} color="purple" size="small">
-                        {tech}
-                      </Badge>
-                    )
-                )}
+                {tech.map((tech, index) => (
+                  <Badge key={index} color="purple" size="small">
+                    {tech}
+                  </Badge>
+                ))}
               </div>
 
               {projectInfo.screenshots.length > 1 ? (
@@ -309,18 +305,18 @@ function ProjectPage() {
                     justifyContent: "center",
                   }}
                 >
-                  <div style={{fontWeight:"bold"}}>Collaborators:</div>
+                  <div style={{ fontWeight: "bold" }}>Collaborators:</div>
                   <Avatar.Group>
                     {collaborators.map((collab, index) => {
                       return (
                         index < 4 && (
                           <Link to={`/profile/${collab._id}`}>
-                          <Avatar
-                            key={collab._id}
-                            img={collab.img}
-                            rounded
-                            stacked
-                          />
+                            <Avatar
+                              key={collab._id}
+                              img={collab.img}
+                              rounded
+                              stacked
+                            />
                           </Link>
                         )
                       );
@@ -335,7 +331,6 @@ function ProjectPage() {
               <div className="mt-4 flex space-x-3 lg:mt-6 m-auto items-center mb-4 ">
                 <Button
                   className="!bg-deep-purple !focus:bg-deep-purple hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800 p-0"
-                  // style={{display:"flex", alignItems:"center", gap:"10px", backgroundColor:"grey", borderRadius:"5px", padding:"5px"}}
                   onMouseOver={handleMouseOver}
                   onMouseOut={handleMouseOut}
                   onClick={handleLike}
@@ -372,32 +367,32 @@ function ProjectPage() {
                     Discussion
                   </h2>
                 </div>
-                {isLoggedIn && 
-                <form className="mb-6" onSubmit={handleAddComment}>
-                  <div className="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-                    <label htmlFor="comment" className="sr-only">
-                      Your comment
-                    </label>
-                    <textarea
-                      id="comment"
-                      rows="6"
-                      className="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
-                      placeholder="Write a comment..."
-                      required
-                      value={commentContent}
-                      onChange={() => {
-                        setCommentContent(event.target.value);
-                      }}
+                {isLoggedIn && (
+                  <form className="mb-6" onSubmit={handleAddComment}>
+                    <div className="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+                      <label htmlFor="comment" className="sr-only">
+                        Your comment
+                      </label>
+                      <textarea
+                        id="comment"
+                        rows="6"
+                        className="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
+                        placeholder="Write a comment..."
+                        required
+                        value={commentContent}
+                        onChange={() => {
+                          setCommentContent(event.target.value);
+                        }}
                       ></textarea>
-                  </div>
-                  <Button
-                    className="!bg-deep-purple !focus:bg-deep-purple hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800"
-                    type="submit"
+                    </div>
+                    <Button
+                      className="!bg-deep-purple !focus:bg-deep-purple hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800"
+                      type="submit"
                     >
-                    Post comment
-                  </Button>
-                </form>
-                }
+                      Post comment
+                    </Button>
+                  </form>
+                )}
                 {allComments.length === 0 && <p>No comments posted yet.</p>}
                 {allComments.map((comment, index) => {
                   return (
@@ -526,7 +521,10 @@ function ProjectPage() {
                 style={{ width: "100%", height: "7rem" }}
               />
               <div className="w-full">
-                <Button className="!bg-deep-purple !focus:bg-deep-purple hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800" onClick={(close) => handleEditComment(close)}>
+                <Button
+                  className="!bg-deep-purple !focus:bg-deep-purple hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800"
+                  onClick={(close) => handleEditComment(close)}
+                >
                   Submit
                 </Button>
               </div>

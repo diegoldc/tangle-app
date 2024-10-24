@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "flowbite-react";
-function SearchBar({style}) {
+function SearchBar({ style }) {
   const [query, setQuery] = useState("");
   const [tech, setTech] = useState("");
 
   return (
-    <div className={`searchBarContainer ${style} flex gap-2 w-[70vw] flex-wrap m-auto`}>
+    <div
+      className={`searchBarContainer ${style} flex gap-2 w-[70vw] flex-wrap m-auto`}
+    >
       <form className="flex items-center max-w- mx-auto">
         <label htmlFor="simple-search" className="sr-only">
           Search

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "flowbite-react";
 import imgBack from "../assets/back.png";
 import imgMedals from "../assets/back-medals.png";
-import imgLevel from "../assets/back-level.png"
+import imgLevel from "../assets/back-level.png";
 
 function HeroSection() {
   return (

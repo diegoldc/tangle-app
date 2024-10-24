@@ -18,7 +18,6 @@ body {
   --border-color: rgba(255, 255, 255, 1);
   --speed: 0.5s;
   --navbar-bg: #dbbffa;
-
 }
 
 .dark {
@@ -182,7 +181,6 @@ body {
   position: absolute;
   top: 65%;
   padding: 0 2px;
-
 }
 
 .text-hero-medals-h {
@@ -252,7 +250,6 @@ body {
   display: none;
 }
 
-
 .addProjectBtn {
   position: fixed;
   right: 50px;
@@ -308,8 +305,6 @@ body {
   position: absolute;
   width: 50vw;
   max-width: 500px;
-  /* background-color: #673AB7; */
-
   z-index: 10;
   top: 50px;
   display: flex;
@@ -318,8 +313,6 @@ body {
   gap: 7px;
   padding: 5px;
   border-radius: 5px;
-  /* flex-wrap: wrap;
-  max-height: 100px; */
 }
 
 .userLi {
@@ -607,7 +600,7 @@ button {
   .text-hero-medals-h {
     font-size: 1.8em;
   }
-  
+
   .text-hero-medals-p {
     position: absolute;
     top: 50%;
@@ -615,7 +608,7 @@ button {
     font-size: 1.2em;
     max-width: 480px;
   }
-  
+
   .container-medals {
     margin: 10px 0;
     display: flex;
@@ -634,21 +627,19 @@ button {
     text-align: center;
     gap: 10px;
   }
-  
-  .text-hero-level-h {
 
+  .text-hero-level-h {
     font-size: 1.8em;
   }
-  
-  .text-hero-level-p {
 
+  .text-hero-level-p {
     position: absolute;
     top: 25%;
     padding: 0 2px;
     font-size: 1.2em;
     max-width: 400px;
   }
-  
+
   .text-hero-level-ul {
     display: block;
     font-weight: bold;

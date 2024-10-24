@@ -13,8 +13,14 @@ import { BsPencilSquare } from "react-icons/bs";
 function Navbar() {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [userImage, setUserImage] = useState(null);
-  const [username, setUsername] = useState(null)
-  const { isLoggedIn, loggedUserId, authenticateUser, loggedUserImg, loggedUserName } = useContext(AuthContext);
+  const [username, setUsername] = useState(null);
+  const {
+    isLoggedIn,
+    loggedUserId,
+    authenticateUser,
+    loggedUserImg,
+    loggedUserName,
+  } = useContext(AuthContext);
   const { theme, toggleTheme } = useContext(ThemeContext);
   const navigate = useNavigate();
 
@@ -23,12 +29,11 @@ function Navbar() {
   }, [isLoggedIn]);
 
   const getData = async () => {
-    if(isLoggedIn){
+    if (isLoggedIn) {
       try {
         const response = await service.get(`/users/${loggedUserId}`);
         setUserImage(response.data.img);
-        // console.log("foto",loggedUserImg)
-        setUsername(response.data.username)
+        setUsername(response.data.username);
       } catch (error) {
         console.log("error al traer la imagen de usuario");
       }
@@ -38,7 +43,7 @@ function Navbar() {
   const toggleSettings = () => setIsSettingsOpen(!isSettingsOpen);
 
   const handleLogout = async () => {
-    toggleSettings()
+    toggleSettings();
     try {
       localStorage.removeItem("authToken");
       await authenticateUser();
@@ -52,15 +57,15 @@ function Navbar() {
     <nav className="navBar">
       <Link to="/">
         <button className="navButton">
-        <IoHomeOutline style={{width:"40px", height:"auto"}}/>
-        <span className="navButtonTxt icon" >Home</span>
+          <IoHomeOutline style={{ width: "40px", height: "auto" }} />
+          <span className="navButtonTxt icon">Home</span>
         </button>
       </Link>
       {isLoggedIn && (
         <Link to="/projects/my-network">
           <button className="navButton">
-          <GiSpiderWeb style={{width:"40px", height:"auto"}}/>
-          <span className="navButtonTxt icon" >My Web</span>
+            <GiSpiderWeb style={{ width: "40px", height: "auto" }} />
+            <span className="navButtonTxt icon">My Web</span>
           </button>
         </Link>
       )}
@@ -77,19 +82,23 @@ function Navbar() {
                 objectFit: "cover",
               }}
             />
-            <span className="navButtonTxt user" >{loggedUserName}</span>
+            <span className="navButtonTxt user">{loggedUserName}</span>
           </button>
         </Link>
       )}
       <button className="navButton" onClick={toggleSettings}>
-      <GiHamburgerMenu style={{width:"40px", height:"auto"}}/>
-      <span className="navButtonTxt icon" >More</span>
+        <GiHamburgerMenu style={{ width: "40px", height: "auto" }} />
+        <span className="navButtonTxt icon">More</span>
       </button>
-      <div className={`burgerMenu ${isSettingsOpen && "showBurger"} ${isLoggedIn && "logged"}`}>
+      <div
+        className={`burgerMenu ${isSettingsOpen && "showBurger"} ${
+          isLoggedIn && "logged"
+        }`}
+      >
         <label className="ui-switch">
           <input
             type="checkbox"
-            checked={theme === 'dark'}
+            checked={theme === "dark"}
             onChange={toggleTheme}
           />
           <div className="slider">
@@ -97,27 +106,24 @@ function Navbar() {
           </div>
         </label>
 
-
-
         {isLoggedIn ? (
           <button className="navButton" onClick={handleLogout}>
-            <RiLogoutBoxRLine style={{width:"40px", height:"auto"}}/>
-            <span className="navButtonTxt" >Log out</span>
-
+            <RiLogoutBoxRLine style={{ width: "40px", height: "auto" }} />
+            <span className="navButtonTxt">Log out</span>
           </button>
         ) : (
           <>
             <Link to="/login">
-    <button className="navButton" onClick={toggleSettings} ><RiLoginBoxLine style={{width:"40px", height:"auto"}}/>
-            <span className="navButtonTxt" >Log in</span>
+              <button className="navButton" onClick={toggleSettings}>
+                <RiLoginBoxLine style={{ width: "40px", height: "auto" }} />
+                <span className="navButtonTxt">Log in</span>
               </button>
-
             </Link>
             <Link to="/signup">
-              <button className="navButton" onClick={toggleSettings} ><BsPencilSquare style={{width:"40px", height:"auto"}} />
-            <span className="navButtonTxt" >Sign up</span>
+              <button className="navButton" onClick={toggleSettings}>
+                <BsPencilSquare style={{ width: "40px", height: "auto" }} />
+                <span className="navButtonTxt">Sign up</span>
               </button>
-
             </Link>
           </>
         )}

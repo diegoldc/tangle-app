@@ -1,31 +1,30 @@
-import { useParams , Link } from 'react-router-dom'
-import service from '../services/config'
-import { useState , useEffect } from 'react'
-import { Card , Avatar, Spinner } from 'flowbite-react'
-import ProjectCard from '../components/ProjectCard'
-import SearchBar from '../components/SearchBar'
+import { useParams, Link } from "react-router-dom";
+import service from "../services/config";
+import { useState, useEffect } from "react";
+import { Card, Avatar, Spinner } from "flowbite-react";
+import ProjectCard from "../components/ProjectCard";
+import SearchBar from "../components/SearchBar";
 
 function SearchTechPage() {
+  const { tech } = useParams();
 
-  const {tech} = useParams()
-
-  const [allProjects, setAllProjects] = useState(null)
+  const [allProjects, setAllProjects] = useState(null);
 
   useEffect(() => {
-    getData()
-  },[tech])
+    getData();
+  }, [tech]);
 
   const getData = async () => {
     try {
-      const response = await service.get(`/projects/tech/${tech}`)
-      setAllProjects(response.data)
+      const response = await service.get(`/projects/tech/${tech}`);
+      setAllProjects(response.data);
     } catch (error) {
-      console.log("error al traer las techs",error)
+      console.log("error al traer las techs", error);
     }
-  }
+  };
 
   if (allProjects === null) {
-    return <Spinner/>;
+    return <Spinner />;
   }
 
   return (
@@ -43,18 +42,21 @@ function SearchTechPage() {
             justifyContent: "center",
           }}
         >
-      {allProjects.length === 0 ? (
-        <p style={{color:"red"}}>No projects found with "{tech}"</p>
-      ) : allProjects.map((project, index) => { return(
-        <Link key={index} to={`/projects/${project._id}`}>
-          <ProjectCard project={project} />
-        </Link>
-      )
-    })}
+          {allProjects.length === 0 ? (
+            <p style={{ color: "red" }}>No projects found with "{tech}"</p>
+          ) : (
+            allProjects.map((project, index) => {
+              return (
+                <Link key={index} to={`/projects/${project._id}`}>
+                  <ProjectCard project={project} />
+                </Link>
+              );
+            })
+          )}
+        </div>
+      </Card>
     </div>
-    </Card>
-    </div>
-  )
+  );
 }
 
-export default SearchTechPage
+export default SearchTechPage;

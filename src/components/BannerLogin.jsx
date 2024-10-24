@@ -6,13 +6,11 @@ import imgLogo from "../assets/white-logo.png";
 import imgLogoPurple from "../assets/purple-logo.png";
 import { ThemeContext } from "../context/theme.context";
 
-
 function Banner() {
   const [showBanner, setShowBanner] = useState(true);
 
   const { isLoggedIn } = useContext(AuthContext);
   const { theme } = useContext(ThemeContext);
-
 
   const handleClose = () => {
     setShowBanner(false);
@@ -25,26 +23,37 @@ function Banner() {
           id="marketing-banner"
           tabIndex="-1"
           className="fixed z-50 flex w-[calc(100%-2rem)] p-4 -translate-x-1/2 bg-white border border-gray-100 rounded-lg shadow-sm lg:max-w-7xl left-1/2 top-6 dark:bg-gray-700 dark:border-gray-600 gap-2"
-          style={{flexDirection:"row",justifyContent:"space-between",alignItems:"center"}}
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
         >
           <div className="flex flex-col items-start me-1 md:items-center md:flex-row md:mb-0">
-            <Link to={`/`}
+            <Link
+              to={`/`}
               className="flex items-center mb-2 border-gray-200 md:pe-4 md:me-4 md:border-e md:mb-0 dark:border-gray-600"
             >
               {theme === "dark" ? (
                 <img src={imgLogo} className="imgBanner" alt="Tangle Logo" />
               ) : (
-                <img src={imgLogoPurple} className="imgBanner" alt="Tangle Logo" />
+                <img
+                  src={imgLogoPurple}
+                  className="imgBanner"
+                  alt="Tangle Logo"
+                />
               )}
             </Link>
           </div>
           <div>
             <p className="textBanner">
-              Log in to upload your projects and connect with others, build your developer web!
+              Log in to upload your projects and connect with others, build your
+              developer web!
             </p>
           </div>
           <div className="flex items-center flex-shrink-0">
-            <Link to={"/login"}
+            <Link
+              to={"/login"}
               className="px-5 py-2 me-2 text-xs font-medium text-white bg-deep-purple rounded-lg hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 focus:outline-none dark:focus:ring-purple-800"
             >
               Log in

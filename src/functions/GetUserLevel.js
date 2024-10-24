@@ -1,20 +1,3 @@
-//recibe como parametro las 5 medallas, cuenta cuantas de cada una tiene y dependiendo de eso devuelve uno de los 5 niveles. con ese nivel al regresar se hace lo que sea dependiendo de la respuesta
-/*    
-medals:{ 
-  projects :{type: String, enum :["stone","Bronce","Silver","Gold"]},
-  comments :{type: String, enum :["stone","Bronce","silver","Gold"]},
-  following :{type: String, enum :["stone","Bronce","silver","gold"]},
-  followers :{type: String, enum :["stone","bronce","silver","gold"]},
-  likes :{type: String, enum :["stone","bronce","silver","gold"]},
-}*/
-
-/*
-1-/projects/user/:userId (x2 - projectos(.length) y likes(map.length))
-2-/comments/user/:userId (comments(.length))
-3-/users/following/:userId (following(.following.length))
-4-/users/followers/:userId (.length)
-*/
-
 
 const GetUserLevel = (projects, comments, following, followers) => {
 
@@ -39,14 +22,14 @@ const GetUserLevel = (projects, comments, following, followers) => {
   } else {
     medals.comments = "Stone"
   }
-  
+
   if (following.length >= 30) {
     medals.following = "Gold"
   } else if (following.length >= 15) {
     medals.following = "Silver"
   } else if (following.length >= 5) {
     medals.following = "Bronce"
-  }else {
+  } else {
     medals.following = "Stone"
   }
 
@@ -56,7 +39,7 @@ const GetUserLevel = (projects, comments, following, followers) => {
     medals.followers = "Silver"
   } else if (followers.length >= 5) {
     medals.followers = "Bronce"
-  }else {
+  } else {
     medals.followers = "Stone"
   }
 
@@ -64,14 +47,14 @@ const GetUserLevel = (projects, comments, following, followers) => {
   projects.map((project) => {
     likeAcc += project.likes.length
   })
-  
+
   if (likeAcc >= 30) {
     medals.likes = "Gold"
   } else if (likeAcc >= 15) {
     medals.likes = "Silver"
   } else if (likeAcc >= 5) {
     medals.likes = "Bronce"
-  }else {
+  } else {
     medals.likes = "Stone"
   }
 
@@ -95,15 +78,15 @@ const GetUserLevel = (projects, comments, following, followers) => {
   })
 
   if (medalAcumulator.gold === 5) {
-    return {level:"Black Widow",medals:medals}
-  } else if (medalAcumulator.gold >= 1){
-    return {level:"Tarantula",medals:medals}
-  } else if (medalAcumulator.silver >=2){
-    return {level:"Redback",medals:medals}
-  } else if (medalAcumulator.bronce >= 3){
-    return {level:"Wolf Spider",medals:medals}
+    return { level: "Black Widow", medals: medals }
+  } else if (medalAcumulator.gold >= 1) {
+    return { level: "Tarantula", medals: medals }
+  } else if (medalAcumulator.silver >= 2) {
+    return { level: "Redback", medals: medals }
+  } else if (medalAcumulator.bronce >= 3) {
+    return { level: "Wolf Spider", medals: medals }
   } else {
-    return {level:"Garden Spider",medals:medals}
+    return { level: "Garden Spider", medals: medals }
   }
 
 
