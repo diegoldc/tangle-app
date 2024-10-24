@@ -47,6 +47,10 @@ body {
   max-width: 400px;
 }
 
+.projectComments {
+  padding-top: 15px;
+}
+
 .profileDiv {
   flex-direction: column;
 }
@@ -674,6 +678,8 @@ button {
     max-width: 95vw;
     justify-content: space-around;
     gap: 50px;
+    align-items: flex-start;
+    padding: 15px;
   }
 
   .projectDetails {
@@ -684,6 +690,7 @@ button {
   .projectComments {
     max-width: 50vw;
     min-width: 30vw;
+    padding-top: 10px;
   }
 
   .authCard {

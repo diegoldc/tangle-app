@@ -283,7 +283,7 @@ function ProjectPage() {
               <div className="mb-10 flex flex-row flex-wrap gap-3 bg-purple-200 dark:bg-logo-purple w-auto min-w-60 h-auto p-2 justify-center rounded-lg">
                 {tech.map(
                   (tech, index) =>
-                    index < 5 && (
+                    (
                       <Badge key={index} color="purple" size="small">
                         {tech}
                       </Badge>
@@ -309,17 +309,19 @@ function ProjectPage() {
                     justifyContent: "center",
                   }}
                 >
-                  <div>Collaborators:</div>
+                  <div style={{fontWeight:"bold"}}>Collaborators:</div>
                   <Avatar.Group>
                     {collaborators.map((collab, index) => {
                       return (
                         index < 4 && (
+                          <Link to={`/profile/${collab._id}`}>
                           <Avatar
                             key={collab._id}
                             img={collab.img}
                             rounded
                             stacked
                           />
+                          </Link>
                         )
                       );
                     })}
@@ -363,7 +365,7 @@ function ProjectPage() {
               </div>
             </div>
 
-            <div className="bg-white dark:bg-gray-900 py-8 lg:py-16 antialiased projectComments">
+            <div className="bg-white dark:bg-gray-900 pb-8 lg:pb-16 antialiased projectComments">
               <div className="max-w-2xl mx-auto px-4">
                 <div className="flex justify-between items-center mb-6">
                   <h2 className="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">
@@ -410,7 +412,7 @@ function ProjectPage() {
                             <div className="flex justify-start mr-4 items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold">
                               <img
                                 className="mr-2 w-6 h-6 rounded-full"
-                                src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
+                                src={comment.user.img}
                                 alt="Michael Gough"
                               />
                               {comment.user.username}

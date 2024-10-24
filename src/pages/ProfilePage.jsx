@@ -34,6 +34,7 @@ function ProfilePage() {
 
   const { loggedUserId , isLoggedIn } = useContext(AuthContext);
   const { theme, toggleTheme } = useContext(ThemeContext);
+  const [collabProjects, setCollabProjects] = useState(null)
 
   useEffect(() => {
     getData();
@@ -70,6 +71,9 @@ function ProfilePage() {
       const followersData = await service.get(`/users/followers/${userId}`);
       setAllProjects(projectsInfo.data);
       setFollowersArr(followersData.data);
+
+      const collaborationsData = await service.get(`projects/collaborations/${userId}`)
+      setCollabProjects(collaborationsData.data)
 
       const userFollowsProfile = followersData.data.filter(
         (user) => user._id === loggedUserId
@@ -289,7 +293,9 @@ function ProfilePage() {
           </Card>
         </div>
 
-        <div>
+        <div
+          style={{display:"flex",flexDirection:"column",gap:"10px"}}
+        >
           {/*proyectos*/}
           <Card
             style={{
@@ -299,6 +305,7 @@ function ProfilePage() {
               minWidth: "370px",
             }}
           >
+            <h1 style={{fontWeight:"bold"}}>{userInfo.username}'s Projects</h1>
             {allProjects === null ? (
               <div><Spinner /></div>
             ) : (
@@ -306,20 +313,16 @@ function ProfilePage() {
                 {allProjects.length === 0 ? (
                   <div className="flex flex-col justify-center items-center gap-5 ">
                     <h1>No projects posted!</h1>
+                  {userId === loggedUserId &&
+                    <div>
                     <p>Add a new project here</p>
                     <Link to="/projects/new-project">
                       <Button className="!bg-deep-purple !focus:bg-deep-purple hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800" >Add a Project!</Button>
                     </Link>
+                    </div>
+                    }
                   </div>
                 ) : (
-                  <>
-                    <h5
-                      className={`text-2xl font-bold tracking-tight ${
-                        theme === "dark" ? "text-white" : "text-gray-900"
-                      }`}
-                    >
-                      {userInfo.username}'s projects
-                    </h5>
                     <div
                       style={{
                         display: "flex",
@@ -337,10 +340,38 @@ function ProfilePage() {
                         );
                       })}
                     </div>
-                  </>
                 )}
               </>
             )}
+          </Card>
+          <Card
+            style={{
+              padding: "auto",
+              width: "69vw",
+              maxWidth: "100vw",
+              minWidth: "370px",
+            }}
+          >
+            <h1 style={{fontWeight:"bold"}}>{userInfo.username}'s Collaborations</h1>
+            { collabProjects !== null ? (
+                    <div
+                    style={{
+                      display: "flex",
+                      flexWrap: "wrap",
+                      gap: "15px",
+                      marginTop: "15px",
+                      justifyContent: "center",
+                    }}
+                  >
+                    {collabProjects.map((project, index) => {
+                      return (
+                        <Link key={index} to={`/projects/${project._id}`}>
+                          <ProjectCard project={project} />
+                        </Link>
+                      );
+                    })}
+                  </div>
+          ) : (<p>{userInfo.name} hasn't collaborated in any projects </p>)}
           </Card>
         </div>
       </div>

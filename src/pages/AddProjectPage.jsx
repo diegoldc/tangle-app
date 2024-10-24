@@ -63,6 +63,7 @@ function AddProjectPage() {
         Post a new project
       </h2>
       <form
+      onSubmit={handleSubmit}
         className="flex max-w-lg w-full flex-col justify-center justify-items-center gap-4 mt-10 m-auto"
         >
         <div>
@@ -165,7 +166,7 @@ function AddProjectPage() {
             setCollaborators={setCollaboratorsObj}
             />
         </div>
-        <Button onClick={handleSubmit} className="w-2/3 m-auto mt-6 !bg-deep-purple !focus:bg-deep-purple hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">
+        <Button type="submit"  className="w-2/3 m-auto mt-6 !bg-deep-purple !focus:bg-deep-purple hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">
           Upload your project
         </Button>
       </form>
