@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import service from "../../services/config";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context";
-import { Button, Label, TextInput, Card } from "flowbite-react";
+import { Button, Label, TextInput, Card, Spinner } from "flowbite-react";
 import formLogo from "../../assets/forms-logo.png";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -14,6 +14,7 @@ function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleUsernameChange = (e) => setUsername(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
@@ -31,6 +32,7 @@ function Login() {
       localStorage.setItem("authToken", response.data.authToken);
       await authenticateUser();
       navigate("/");
+      setIsLoading(false)
     } catch (error) {
       console.log(error);
       setErrorMessage(error.response.data.message);
@@ -82,8 +84,16 @@ function Login() {
               <Button
                 type="submit"
                 className="w-2/3 m-auto mt-6 !bg-deep-purple !hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 focus:outline-none dark:focus:ring-purple-800"
+                disabled={isLoading}
               >
-                Enter your Web
+                {isLoading ? (
+                  <>
+                    Entering... <Spinner size="sm" />
+                  </>
+                ) : (
+                  "Enter your Web"
+                )}
+                
               </Button>
               {errorMessage && (
                 <div className="text-red-500">{errorMessage}</div>
