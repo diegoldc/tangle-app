@@ -2,6 +2,8 @@ import { useParams , Link } from 'react-router-dom'
 import service from '../services/config'
 import { useState , useEffect } from 'react'
 import { Card , Avatar, Spinner } from 'flowbite-react'
+import ProjectCard from '../components/ProjectCard'
+import SearchBar from '../components/SearchBar'
 
 function SearchTechPage() {
 
@@ -11,7 +13,7 @@ function SearchTechPage() {
 
   useEffect(() => {
     getData()
-  },[])
+  },[tech])
 
   const getData = async () => {
     try {
@@ -28,18 +30,29 @@ function SearchTechPage() {
 
   return (
     <div>
-      <h1>Results for: "{tech}"</h1>
+      <SearchBar style={"smallSearchBar"} />
+
+      <Card className="mt-5">
+        <h1>Results for: "{tech}"</h1>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "15px",
+            marginTop: "15px",
+            justifyContent: "center",
+          }}
+        >
       {allProjects.length === 0 ? (
-        <p>No projects found with "{tech}"</p>
+        <p style={{color:"red"}}>No projects found with "{tech}"</p>
       ) : allProjects.map((project, index) => { return(
         <Link key={index} to={`/projects/${project._id}`}>
-          <Card >
-            <p>{project.name.toUpperCase()}</p>
-            <p>{project.description}</p>
-          </Card>
+          <ProjectCard project={project} />
         </Link>
       )
-      })}
+    })}
+    </div>
+    </Card>
     </div>
   )
 }

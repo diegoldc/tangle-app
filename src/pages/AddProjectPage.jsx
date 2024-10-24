@@ -1,18 +1,18 @@
 import { FileInput, Button, Label, TextInput, Textarea, Card } from "flowbite-react";
 import AddTechnologies from "../components/AddTechnologies";
 import AddCollaborators from "../components/AddCollaborators";
-import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
 import service from "../services/config";
-import { AuthContext } from "../context/auth.context";
 import AddScreenshots from "../components/AddScreenshots";
+import { useNavigate } from "react-router-dom";
+import { useState, useContext , useEffect } from "react";
+import { AuthContext } from "../context/auth.context";
+
 
 function AddProjectPage() {
-  const { loggedUserId } = useContext(AuthContext);
-
+  const { loggedUserId , isLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const dateDefault = new Date(Date.now()).toISOString().split("T")[0];
-
+  
   const [name, setName] = useState("");
   const [github, setGithub] = useState("");
   const [deployment, setDeployment] = useState("");
@@ -21,14 +21,14 @@ function AddProjectPage() {
   const [screenshots, setScreenshots] = useState([]);
   const [tech, setTech] = useState([]);
   const [collaboratorsObj, setCollaboratorsObj] = useState([]);
+  
 
-
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    
     const collaborators = collaboratorsObj.map((obj) => obj._id);
-
+    
     try {
       const newProject = {
         name,
@@ -42,7 +42,7 @@ function AddProjectPage() {
         collaborators,
         likes: [],
       };
-
+      
       const response = await service.post(`/projects`, newProject);
       console.log(response.data);
       navigate(`/projects/${response.data._id}`);
@@ -50,6 +50,12 @@ function AddProjectPage() {
       console.log("error al crear proyecto", error);
     }
   };
+  
+  if(!isLoggedIn){
+    console.log(isLoggedIn)
+    navigate("/login")
+  }
+  
   return (
     <Card className="m-auto w-11/12 mt-10 authCard">
       <div className=" visible">

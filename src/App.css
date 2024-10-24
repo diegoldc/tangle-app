@@ -2,14 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-
 html,
 body {
   margin: 0;
-  background-color: var(--bg-color-light); 
+  background-color: var(--bg-color-light);
   height: 100%;
 }
-
 
 :root {
   --bg-color-light: rgb(231, 212, 240);
@@ -19,23 +17,30 @@ body {
   --border-size: 2px;
   --border-color: rgba(255, 255, 255, 1);
   --speed: 0.5s;
+  --navbar-bg: #dbbffa;
+
 }
 
-
 .dark {
-  --bg-color-light: #1F2937;
+  --bg-color-light: #1f2937;
   --detail-color: #bb86fc;
-  --font-color:white;
+  --font-color: white;
   --bg-color: #0f1a31;
+  --navbar-bg: #272e46;
 }
 
 #root {
   margin: 0;
   padding: 20px;
   text-align: center;
-  background-color: var(--bg-color-light); 
-  color: var(--font-color);    
+  background-color: var(--bg-color-light);
+  color: var(--font-color);
   height: 100%;
+}
+
+.userCard {
+  width: 20vw;
+  min-width: 260px;
 }
 
 .projectPageDisplay {
@@ -75,11 +80,10 @@ body {
   margin: 5px 0;
   display: flex;
   justify-content: center;
-
 }
 
 .navButtonTxt {
-  display:none;
+  display: none;
 }
 
 .navButton:active {
@@ -120,7 +124,7 @@ body {
   transform: rotate(45deg);
 }
 
-.logo-tangle{
+.logo-tangle {
   width: 60px;
   margin: auto;
   margin-bottom: 20px;
@@ -136,9 +140,9 @@ body {
 .hero-section {
   display: flex;
   flex-direction: column;
-  justify-content: center; 
+  justify-content: center;
   text-align: center;
-  position: relative; 
+  position: relative;
   padding: 20px;
   background-color: var(--detail-color);
   height: 55vh;
@@ -159,23 +163,19 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  
 }
 
 .hero-section h1 {
-  font-size: 2em; 
+  font-size: 2em;
 }
 
 .hero-section p {
-  font-size: 1em; 
-  max-width: 600px; 
+  font-size: 1em;
+  max-width: 600px;
   margin: 0 5px;
   position: absolute;
   top: 65%;
 }
-
-
-
 
 .addProjectBtn {
   position: fixed;
@@ -405,14 +405,26 @@ button {
   animation: spinner-aib1d7 0.75s infinite linear;
 }
 
+.textBanner {
+  display: flex;
+  align-items: center;
+  font-size: small;
+  margin: 0;
+}
+
+.imgBanner {
+  height: auto;
+  width: 120px;
+  display: flex;
+}
+
 @keyframes spinner-aib1d7 {
   to {
     transform: rotate(360deg);
   }
 }
 
-@media (width > 760px){
-
+@media (width > 760px) {
   body {
     margin-top: 140px;
   }
@@ -425,11 +437,11 @@ button {
     left: 0px;
     flex-direction: row;
     justify-content: space-around;
-    background-color: #272e46;
+    background-color: var(--navbar-bg);
   }
 
   .navButton {
-    border:none;
+    border: none;
     box-shadow: none;
     background-color: transparent;
   }
@@ -438,30 +450,30 @@ button {
     display: block;
     font-size: 1.7rem;
     margin-left: 10px;
-    text-transform: uppercase; 
+    text-transform: uppercase;
   }
 
   .burgerMenu {
-    background-color: #272e46;
+    background-color: var(--navbar-bg);
     padding: 20px;
     position: fixed;
-    top:45px;
+    top: 45px;
     left: 70vw;
   }
 
   .logged {
     left: 82vw;
   }
-  
+
   .profileDiv {
     flex-direction: row;
   }
-  
+
   .searchBarContainer {
-    background-color: #272e46;
+    background-color: var(--navbar-bg);
     width: 100vw;
     position: fixed;
-    top:70px;
+    top: 70px;
     left: 0px;
     height: 70px;
     margin: 0px;
@@ -471,22 +483,20 @@ button {
   .smallSearchBar {
     display: none;
   }
-  
+
   .bigSearchBar {
     display: flex;
   }
 
-
-  
   .hero-section {
-    align-items: flex-start; 
-    text-align: center; 
+    align-items: flex-start;
+    text-align: center;
     padding: 20px;
     background-color: var(--detail-color);
     height: 55vh;
     margin-top: 20px;
   }
-  
+
   .container {
     margin-bottom: 0px;
     display: flex;
@@ -494,21 +504,20 @@ button {
     align-items: start;
     text-align: start;
   }
-  
+
   .hero-section h1 {
-    font-size: 3em; 
+    font-size: 3em;
   }
-  
+
   .hero-section p {
-    font-size: 1.2em; 
-    max-width: 600px; 
+    font-size: 1.2em;
+    max-width: 600px;
     margin: 0;
     position: absolute;
     top: 50%;
-    
   }
 
-  .logo-tangle{
+  .logo-tangle {
     width: 200px;
     margin: auto;
     margin: 20px auto;
@@ -543,5 +552,13 @@ button {
     visibility: visible;
     max-width: 1200px;
     margin: auto;
+  }
+
+  .textBanner {
+    font-size: medium;
+  }
+
+  .imgBanner {
+    width: 80px;
   }
 }

@@ -4,6 +4,8 @@ import { useNavigate, useParams, Link, Navigate } from "react-router-dom";
 import service from "../services/config";
 import bcrypt from 'bcryptjs'
 
+
+
 function ChangePasswordPage() {
   const navigate = useNavigate()
 
@@ -41,7 +43,7 @@ function ChangePasswordPage() {
   return (
     <Card className="m-auto w-11/12 mt-10 authCard">
       <div className=" visible">
-      <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+      <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight">
         Change Password
       </h2>
       <form

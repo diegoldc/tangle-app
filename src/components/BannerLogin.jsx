@@ -32,14 +32,14 @@ function Banner() {
               className="flex items-center mb-2 border-gray-200 md:pe-4 md:me-4 md:border-e md:mb-0 dark:border-gray-600"
             >
               {theme === "dark" ? (
-                <img src={imgLogo} className="h-6 me-2 w-32 h-auto flex" alt="Tangle Logo" />
+                <img src={imgLogo} className="imgBanner" alt="Tangle Logo" />
               ) : (
-                <img src={imgLogoPurple} className="h-6 me-2 w-32 h-auto flex" alt="Tangle Logo" />
+                <img src={imgLogoPurple} className="imgBanner" alt="Tangle Logo" />
               )}
             </Link>
           </div>
           <div>
-            <p className="flex items-center text-sm font-normal text-gray-500 dark:text-gray-400">
+            <p className="textBanner">
               Log in to upload your projects and connect with others, build your developer web!
             </p>
           </div>

@@ -55,7 +55,7 @@ function Signup() {
         <body class="h-full">
         ```
       */}
-      <Card className="m-auto w-10/12 mt-10 authCard">
+      <Card className="m-auto w-10/12 mt-0 authCard">
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 visible">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           {/* <img

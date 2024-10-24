@@ -24,6 +24,7 @@ import imgLogo from "./assets/deep-purple-logo.png";
 import imgWeb from "./assets/web-purple.png";
 import FooterBar from "./components/FooterBar";
 import SearchBar from "./components/SearchBar";
+import Private from "./components/auth/Private";
 
 
 
@@ -36,18 +37,12 @@ function App() {
       <Navbar />
       <SearchBar style={"bigSearchBar"} />
 
-      <img
-        src={imgWeb}
-        alt="web"
-        className="spider-web"
-      
-      />
-      <img
-      className="logo-tangle"
-        src={imgLogo}
-        alt="logo"
-
-      />
+      <img src={imgWeb} alt="web" className="spider-web" />
+      <div style={{width:"30vw",maxWidth:"180px",margin:"auto"}}>
+      <Link to="/" >
+      <img className="logo-tangle" src={imgLogo} alt="logo" style={{width:"30vw",maxWidth:"180px"}}/>
+      </Link >
+        </div>
 
 
       <BannerLogin />
@@ -57,22 +52,31 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile/:userId" element={<ProfilePage />} />
-        <Route path="/projects/new-project" element={<AddProjectPage />} />
-        <Route path="/projects/:projectId" element={<ProjectPage />} />
+
+        
+        <Route
+          path="/projects/new-project"
+          element={<Private><AddProjectPage /> </Private> }
+        />
+
+        <Route
+          path="/projects/:projectId"
+          element={<ProjectPage />}
+        />
         <Route
           path="/projects/:projectId/update"
-          element={<EditProjectPage />}
+          element={<Private><EditProjectPage /></Private>}
         />
         <Route
           path="/projects/favourites"
-          element={<FavouriteProjectsPage />}
+          element={<Private><FavouriteProjectsPage /></Private>}
         />
-        <Route path="/projects/my-network" element={<MyNetworkPage />} />
+        <Route path="/projects/my-network" element={<Private><MyNetworkPage /></Private>} />
         <Route path="/about" element={<AboutPage />} />
-        <Route path="/profile/:userId/my-info" element={<EditUserPage />} />
+        <Route path="/profile/:userId/my-info" element={<Private><EditUserPage /></Private>} />
         <Route
           path="/profile/:userId/change-password"
-          element={<ChangePasswordPage />}
+          element={<Private><ChangePasswordPage /></Private>}
         />
         <Route path="/search" element={<SearchUserPage />} />
         <Route path="/tech/:tech" element={<SearchTechPage />} />

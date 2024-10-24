@@ -1,12 +1,14 @@
 import { Avatar, Card, Button, Label, TextInput, Spinner } from "flowbite-react";
 import AddTechnologies from "../components/AddTechnologies";
-import { useState , useEffect } from "react";
+import { useState , useEffect , useContext } from "react";
 import { useNavigate , useParams , Link } from "react-router-dom";
 import service from "../services/config";
 
 
 
+
 function EditUserPage() {
+
 
   const navigate = useNavigate()
   const {userId} = useParams()
@@ -26,7 +28,7 @@ function EditUserPage() {
   const getData = async () => {
     try {
       const response = await service.get(`/users/${userId}`)
-      // console.log(response.data)
+      console.log(response.data)
       setUsername(response.data.username)
       setFirstName(response.data.firstName)
       setLastName(response.data.lastName)
@@ -96,7 +98,6 @@ function EditUserPage() {
           autoComplete="off"
           value={firstName}
           onChange={() => setFirstName(event.target.value)}
-          required
           shadow
           />
       </div>
@@ -157,7 +158,7 @@ function EditUserPage() {
       </form>
       <hr />
       <div className="flex flex-col items-center justify-center justify-items-center m-auto">
-        <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+        <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight">
           Change password?
         </h2>
         <Link className="" to={`/profile/${userId}/change-password`} >

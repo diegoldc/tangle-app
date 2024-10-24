@@ -37,7 +37,7 @@ function ProjectPage() {
   const [editedContent, setEditedContent] = useState("");
   const [editCommentId, setEditCommentId] = useState("");
 
-  const { loggedUserId } = useContext(AuthContext);
+  const { loggedUserId , isLoggedIn } = useContext(AuthContext);
 
   useEffect(() => {
     getData();
@@ -279,8 +279,8 @@ function ProjectPage() {
                 {description}
               </p>
 
-                <p style={{fontWeight:"bold"}} >Technologies:</p>
-              <div className="mb-10 flex flex-row gap-3 bg-purple-200 dark:bg-logo-purple w-auto p-2 justify-center rounded-lg">
+                <p style={{fontWeight:"bold",marginBottom:"10px"}} >Technologies:</p>
+              <div className="mb-10 flex flex-row flex-wrap gap-3 bg-purple-200 dark:bg-logo-purple w-auto min-w-60 h-auto p-2 justify-center rounded-lg">
                 {tech.map(
                   (tech, index) =>
                     index < 5 && (
@@ -370,6 +370,7 @@ function ProjectPage() {
                     Discussion
                   </h2>
                 </div>
+                {isLoggedIn && 
                 <form className="mb-6" onSubmit={handleAddComment}>
                   <div className="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
                     <label htmlFor="comment" className="sr-only">
@@ -385,15 +386,16 @@ function ProjectPage() {
                       onChange={() => {
                         setCommentContent(event.target.value);
                       }}
-                    ></textarea>
+                      ></textarea>
                   </div>
                   <Button
                     className="!bg-deep-purple !focus:bg-deep-purple hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800"
                     type="submit"
-                  >
+                    >
                     Post comment
                   </Button>
                 </form>
+                }
                 {allComments.map((comment, index) => {
                   return (
                     <>
