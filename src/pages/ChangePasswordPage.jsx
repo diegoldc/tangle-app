@@ -72,7 +72,7 @@ function ChangePasswordPage() {
           </div>
           <TextInput
             id="newPassword"
-            type="text"
+            type="password"
             autoComplete="off"
             value={newPassword}
             onChange={() => setNewPassword(event.target.value)}
@@ -87,7 +87,7 @@ function ChangePasswordPage() {
           </div>
           <TextInput
             id="firstName"
-            type="text"
+            type="password"
             autoComplete="off"
             value={confirmNewPassword}
             onChange={() => setConfirmNewPassword(event.target.value)}
