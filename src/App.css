@@ -204,6 +204,38 @@ body {
   gap: 10px;
 }
 
+.container-level {
+  margin-bottom: 0px;
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 1;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.text-hero-level-h {
+  color: var(--detail-color) !important;
+  font-weight: bold !important;
+  font-size: 1.8em;
+}
+
+.text-hero-level-p {
+  color: var(--detail-color) !important;
+  font-weight: bold !important;
+  position: absolute;
+  top: 70%;
+  padding: 0 2px;
+  font-size: 1em;
+  max-width: 600px;
+}
+
+.text-hero-level-ul {
+  color: var(--detail-color) !important;
+  display: none;
+}
+
+
 .addProjectBtn {
   position: fixed;
   right: 50px;
@@ -538,21 +570,17 @@ button {
 
   .text-hero-p {
     font-size: 1.2em;
-    max-width: 600px;
+    max-width: 500px;
     margin: 0;
     position: absolute;
     top: 50%;
   }
 
   .text-hero-medals-h {
-    color: var(--detail-color) !important;
-    font-weight: bold !important;
     font-size: 1.8em;
   }
   
   .text-hero-medals-p {
-    color: var(--detail-color) !important;
-    font-weight: bold !important;
     position: absolute;
     top: 50%;
     padding: 0 2px;
@@ -566,6 +594,38 @@ button {
     justify-content: space-between;
     align-items: start;
     text-align: start;
+  }
+
+  .container-level {
+    margin-bottom: 0px;
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+    flex-direction: column;
+    align-items: start;
+    text-align: start;
+    gap: 10px;
+  }
+  
+  .text-hero-level-h {
+
+    font-size: 1.8em;
+  }
+  
+  .text-hero-level-p {
+
+    position: absolute;
+    top: 25%;
+    padding: 0 2px;
+    font-size: 1.2em;
+    max-width: 400px;
+  }
+  
+  .text-hero-level-ul {
+    display: block;
+    font-weight: bold;
+    position: absolute;
+    top: 65%;
   }
 
   .logo-tangle {

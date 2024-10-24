@@ -66,11 +66,12 @@ function ChangePasswordPage() {
         </div>
 
         <div>
+        <p className="m-auto mb-3 w-6/12 min-w-40 text-gray-500 dark:text-gray-500" >Password must have al least one lower case, one higher case letter and a number</p>
           <div className="mb-2 block">
-            <Label htmlFor="firstName" value="New password" />
+            <Label htmlFor="newPassword" value="New password" />
           </div>
           <TextInput
-            id="firstName"
+            id="newPassword"
             type="text"
             autoComplete="off"
             value={newPassword}

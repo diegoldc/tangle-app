@@ -19,6 +19,9 @@ import HeroSection from "../components/HeroSection";
 function HomePage() {
   const [allProjects, setAllProjects] = useState(null);
   const { theme, toggleTheme } = useContext(ThemeContext);
+  const [loadingMoreProjects  , setLoadingMoreProjects  ] = useState(false)
+  const [page, setPage] = useState(1)
+  const [reachedEnd, setReachedEnd] = useState(false)
 
   useEffect(() => {
     getData();
@@ -26,12 +29,31 @@ function HomePage() {
 
   const getData = async () => {
     try {
-      const response = await service.get("/projects");
+      const response = await service.get(`/projects/page/1`);
+      setPage(page + 1) 
       setAllProjects(response.data);
     } catch (error) {
       console.log("error al traer proyectos", error);
     }
   };
+
+  const loadMoreProjects = async () => {
+    setLoadingMoreProjects(true)
+    try {
+      const response = await service.get(`/projects/page/${page}`)
+      console.log(page,response.data)
+      response.data.length < 10 && setReachedEnd(true)
+      console.log(allProjects)
+      setAllProjects((current) => [...current,...response.data])
+      console.log(allProjects)
+    } catch (error) {
+      console.log("error al cargar mas projectos",error)
+      setReachedEnd(true)
+    }
+    console.log("more projects requested")
+
+    setLoadingMoreProjects(false)
+  }
 
   if (allProjects === null) {
     return (
@@ -63,6 +85,7 @@ function HomePage() {
             );
           })}
         </div>
+        {!reachedEnd && <Button  className="!bg-deep-purple !focus:bg-deep-purple hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800" onClick={loadMoreProjects} >{loadingMoreProjects ? <Spinner /> : "Load More Projects"}</Button> }
       </Card>
     </div>
   );

@@ -40,6 +40,37 @@ function HeroSection() {
             backgroundPosition: "center",
           }}
         >
+          <div className="container-level">
+            <h1 className="text-hero-level-h">
+              Level Up by Earning Medals! <br />
+              Reach the Top Tier!
+            </h1>
+            <p className="text-hero-level-p">
+              As you gain medals, you'll climb through 5 unique spider-themed
+              levels. Each new level unlocks as you earn more medals:
+              <strong>
+                Interact with the community, post projects, comment, like, and
+                gain followers to progress!
+              </strong>
+            </p>
+            <ul className="text-hero-level-ul">
+              <li>Level 1 - Tarantula</li>
+              <li>Level 2 - Redback</li>
+              <li>Level 3 - Garden Spider</li>
+              <li>Level 4 - Wolf Spider</li>
+              <li>Level 5 - Black Widow</li>
+            </ul>
+          </div>
+        </section>
+
+        <section
+          className="hero-section"
+          style={{
+            backgroundImage: `url(${imgMedals})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
           <div className="container-medals">
             <h1 className="text-hero-medals-h">
               Earn Medals by Engaging <br />
@@ -54,12 +85,6 @@ function HeroSection() {
               </strong>
               Start interacting and collecting medals today!
             </p>
-
-            {/* <Link to="/signup">
-              <Button className="!bg-deep-purple !focus:bg-deep-purple hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">
-                Sign up
-              </Button>
-            </Link> */}
           </div>
         </section>
       </Carousel>
