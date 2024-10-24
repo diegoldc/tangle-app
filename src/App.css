@@ -150,6 +150,19 @@ body {
   margin-top: 20px;
 }
 
+.hero-section-level {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  padding: 20px;
+  background-color: var(--detail-color);
+  height: 55vh;
+  align-items: center;
+  margin-top: 20px;
+}
+
 .text-hero-h {
   color: var(--detail-color) !important;
   font-weight: bold !important;
@@ -224,7 +237,7 @@ body {
   color: var(--detail-color) !important;
   font-weight: bold !important;
   position: absolute;
-  top: 70%;
+  top: 50%;
   padding: 0 2px;
   font-size: 1em;
   max-width: 600px;
@@ -551,8 +564,19 @@ button {
     align-items: flex-start;
     text-align: center;
     padding: 20px;
-    background-color: var(--detail-color);
     height: 55vh;
+    margin-top: 20px;
+  }
+
+  .hero-section-level {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    padding: 20px;
+    height: 55vh;
+    align-items: center;
     margin-top: 20px;
   }
 
@@ -602,8 +626,8 @@ button {
     justify-content: space-between;
     flex-grow: 1;
     flex-direction: column;
-    align-items: start;
-    text-align: start;
+    align-items: center;
+    text-align: center;
     gap: 10px;
   }
   
@@ -626,6 +650,7 @@ button {
     font-weight: bold;
     position: absolute;
     top: 65%;
+    text-align: start;
   }
 
   .logo-tangle {

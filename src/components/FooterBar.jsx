@@ -4,7 +4,7 @@ import { Footer } from "flowbite-react";
 function FooterBar() {
   return (
     <Footer Container className="bg-trasparent flex justify-around gap-3 border-none shadow-none">
-      <Footer.Copyright by="TANGLE" year={2024} />
+      <Footer.Copyright by="TANGLE,inc" year={2024} />
       <Footer.LinkGroup className="flex justify-around gap-0">
 
       <Footer.Link href="/about" >About us</Footer.Link>

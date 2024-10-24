@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "flowbite-react";
 import imgBack from "../assets/back.png";
 import imgMedals from "../assets/back-medals.png";
+import imgLevel from "../assets/back-level.png"
 
 function HeroSection() {
   return (
@@ -33,9 +34,9 @@ function HeroSection() {
         </section>
 
         <section
-          className="hero-section"
+          className="hero-section-level"
           style={{
-            backgroundImage: `url(${imgMedals})`,
+            backgroundImage: `url(${imgLevel})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -54,10 +55,10 @@ function HeroSection() {
               </strong>
             </p>
             <ul className="text-hero-level-ul">
-              <li>Level 1 - Tarantula</li>
-              <li>Level 2 - Redback</li>
-              <li>Level 3 - Garden Spider</li>
-              <li>Level 4 - Wolf Spider</li>
+              <li>Level 1 - Garden Spider</li>
+              <li>Level 2 - Wolf Spider</li>
+              <li>Level 3 - Redback</li>
+              <li>Level 4 - Tarantula</li>
               <li>Level 5 - Black Widow</li>
             </ul>
           </div>
