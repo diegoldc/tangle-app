@@ -22,6 +22,8 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
 
+    setIsLoading(true)
+
     const credentials = {
       username,
       password,
