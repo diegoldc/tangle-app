@@ -398,6 +398,7 @@ function ProjectPage() {
                   </Button>
                 </form>
                 }
+                {allComments.length === 0 && <p>No comments posted yet.</p>}
                 {allComments.map((comment, index) => {
                   return (
                     <>
