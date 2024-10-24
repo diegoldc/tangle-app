@@ -38,6 +38,7 @@ function Login() {
     } catch (error) {
       console.log(error);
       setErrorMessage(error.response.data.message);
+      setIsLoading(false)
     }
   };
 
@@ -89,11 +90,11 @@ function Login() {
                 disabled={isLoading}
               >
                 {isLoading ? (
-                  <>
+                  <div>
                     Entering... <Spinner size="sm" />
-                  </>
+                  </div>
                 ) : (
-                  "Enter your Web"
+                  <div>Enter your Web</div>
                 )}
                 
               </Button>
