@@ -20,6 +20,11 @@ import Medals from "../components/Medals";
 import { ThemeContext } from "../context/theme.context";
 import { AiOutlineGithub } from "react-icons/ai";
 import { AiOutlineLinkedin } from "react-icons/ai";
+import { GiLongLeggedSpider } from "react-icons/gi";
+import { GiHangingSpider } from "react-icons/gi";
+import { TbSpider } from "react-icons/tb";
+import { FaSpider } from "react-icons/fa6";
+import { GiAngularSpider } from "react-icons/gi";
 
 function ProfilePage() {
   const { userId } = useParams();
@@ -168,7 +173,19 @@ function ProfilePage() {
             <p className="text-5xl font-bold tracking-tight text-gray-900 dark:text-white max-w-full break-all">
               {userInfo.username}
             </p>
-            <p>Spider Level: {userLevel.level}</p>
+            
+            <div style={{display:"flex", flexDirection:"column", gap:"10px", justifyContent:"center",alignItems:"center"}}>
+
+            <p>Spider Level:</p>
+            {userLevel.level === "Garden Spider" && <GiLongLeggedSpider size={40}/>}
+            {userLevel.level === "Wolf Spider" && <GiHangingSpider size={40}/>}
+            {userLevel.level === "Redback" && <TbSpider size={40}/>}
+            {userLevel.level === "Tarantula" && <FaSpider size={40}/>}
+            {userLevel.level === "Black Widow" && <GiAngularSpider size={40}/>}
+              <p>{userLevel.level}</p>
+
+            </div>
+
             {userInfo.firstName && userInfo.lastName ? (
               <h5>
                 {userInfo.firstName} {userInfo.lastName}{" "}

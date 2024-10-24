@@ -100,7 +100,7 @@ const GetUserLevel = (projects, comments, following, followers) => {
     return {level:"Tarantula",medals:medals}
   } else if (medalAcumulator.silver >=2){
     return {level:"Redback",medals:medals}
-  } else if (medalAcumulator.bronce >= 4){
+  } else if (medalAcumulator.bronce >= 3){
     return {level:"Wolf Spider",medals:medals}
   } else {
     return {level:"Garden Spider",medals:medals}
