@@ -330,7 +330,7 @@ function ProjectPage() {
                 </div>
               ) : null}
 
-              <div className="mt-4 flex space-x-3 lg:mt-6 m-auto items-center ">
+              <div className="mt-4 flex space-x-3 lg:mt-6 m-auto items-center mb-4 ">
                 <Button
                   className="!bg-deep-purple !focus:bg-deep-purple hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800 p-0"
                   // style={{display:"flex", alignItems:"center", gap:"10px", backgroundColor:"grey", borderRadius:"5px", padding:"5px"}}

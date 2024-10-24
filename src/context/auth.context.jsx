@@ -11,6 +11,8 @@ function AuthWrapper (props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [loggedUserId, setLoggedUserId] = useState(null)
   const [isValidatingToken, setIsValidatingToken] = useState(true)
+  const [loggedUserImg, setLoggedUserImg] = useState(null)
+  const [loggedUserName, setLoggedUserName] = useState(null)
 
   useEffect(() => {
 
@@ -23,8 +25,13 @@ function AuthWrapper (props) {
     
     try {
       const response = await service.get(`/auth/verify`)
+      const userData = await service.get(`/users/${response.data._id}`)
+      // console.log(response.data._id)
       setIsLoggedIn(true)
       setLoggedUserId(response.data._id)
+      setLoggedUserName(response.data.username)
+      // console.log(userData.data)
+      setLoggedUserImg(userData.data.img)
       setIsValidatingToken(false)
       
     } catch (error) {
@@ -42,7 +49,11 @@ function AuthWrapper (props) {
   const passedContext = {
     isLoggedIn,
     loggedUserId,
-    authenticateUser
+    authenticateUser,
+    loggedUserImg,
+    loggedUserName,
+    setLoggedUserImg,
+    setLoggedUserName
   }
 
 

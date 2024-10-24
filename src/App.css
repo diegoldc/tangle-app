@@ -150,9 +150,38 @@ body {
   margin-top: 20px;
 }
 
-.text-hero {
+.text-hero-h {
   color: var(--detail-color) !important;
   font-weight: bold !important;
+  font-size: 2em;
+}
+
+.text-hero-p {
+  color: var(--detail-color) !important;
+  font-weight: bold !important;
+  font-size: 1em;
+  max-width: 600px;
+  margin: 0 5px;
+  position: absolute;
+  top: 65%;
+  padding: 0 2px;
+
+}
+
+.text-hero-medals-h {
+  color: var(--detail-color) !important;
+  font-weight: bold !important;
+  font-size: 1.8em;
+}
+
+.text-hero-medals-p {
+  color: var(--detail-color) !important;
+  font-weight: bold !important;
+  position: absolute;
+  top: 70%;
+  padding: 0 2px;
+  font-size: 1em;
+  max-width: 600px;
 }
 
 .container {
@@ -165,16 +194,14 @@ body {
   gap: 10px;
 }
 
-.hero-section h1 {
-  font-size: 2em;
-}
-
-.hero-section p {
-  font-size: 1em;
-  max-width: 600px;
-  margin: 0 5px;
-  position: absolute;
-  top: 65%;
+.container-medals {
+  margin-bottom: 0px;
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 1;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 
 .addProjectBtn {
@@ -505,16 +532,40 @@ button {
     text-align: start;
   }
 
-  .hero-section h1 {
+  .text-hero-h {
     font-size: 3em;
   }
 
-  .hero-section p {
+  .text-hero-p {
     font-size: 1.2em;
     max-width: 600px;
     margin: 0;
     position: absolute;
     top: 50%;
+  }
+
+  .text-hero-medals-h {
+    color: var(--detail-color) !important;
+    font-weight: bold !important;
+    font-size: 1.8em;
+  }
+  
+  .text-hero-medals-p {
+    color: var(--detail-color) !important;
+    font-weight: bold !important;
+    position: absolute;
+    top: 50%;
+    padding: 0 2px;
+    font-size: 1.2em;
+    max-width: 480px;
+  }
+  
+  .container-medals {
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    text-align: start;
   }
 
   .logo-tangle {
@@ -542,10 +593,12 @@ button {
 
   .projectDetails {
     max-width: 40vw;
+    min-width: 30vw;
   }
 
   .projectComments {
     max-width: 50vw;
+    min-width: 30vw;
   }
 
   .authCard {

@@ -6,7 +6,7 @@ import { AuthContext } from "../context/auth.context";
 
 function UpdateAvatar({getData,setOpen}) {
 
-  const { loggedUserId } = useContext(AuthContext);
+  const { loggedUserId , setLoggedUserImg } = useContext(AuthContext);
 
 
   const [img, setImg] = useState("")
@@ -28,6 +28,7 @@ function UpdateAvatar({getData,setOpen}) {
     try {
       const response = await service.post("/upload-img", {image: img}, {})
       await service.patch(`/users/${loggedUserId}/profile`,{img:response.data.url})
+      setLoggedUserImg(response.data.url)
       getData()
       setOpen(false)
     } catch (error) {

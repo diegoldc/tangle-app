@@ -2,12 +2,15 @@ import { Avatar, Card, Button, Label, TextInput, Spinner } from "flowbite-react"
 import AddTechnologies from "../components/AddTechnologies";
 import { useState , useEffect , useContext } from "react";
 import { useNavigate , useParams , Link } from "react-router-dom";
+import { AuthContext } from "../context/auth.context";
 import service from "../services/config";
 
 
 
 
 function EditUserPage() {
+
+  const { setLoggedUserName } = useContext(AuthContext);
 
 
   const navigate = useNavigate()
@@ -52,6 +55,7 @@ function EditUserPage() {
       linkedin,
       tech
     }
+    setLoggedUserName(username)
 
     try {
       await service.patch(`/users/${userId}/profile`, editedUser)

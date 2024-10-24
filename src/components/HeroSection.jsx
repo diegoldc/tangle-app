@@ -17,8 +17,8 @@ function HeroSection() {
           }}
         >
           <div className="container">
-            <h1 className="text-hero">Welcome to TANGLE</h1>
-            <p className="text-hero">
+            <h1 className="text-hero-h">Welcome to TANGLE</h1>
+            <p className="text-hero-p">
               In <strong>TANGLE</strong>, we help you develop inovative proyects
               and expand your skills. Discover new projects, enlarge your web
               and get tangled in it!
@@ -40,12 +40,12 @@ function HeroSection() {
             backgroundPosition: "center",
           }}
         >
-          <div className="container">
-            <h1 className="text-hero">
+          <div className="container-medals">
+            <h1 className="text-hero-medals-h">
               Earn Medals by Engaging <br />
               with the Community!
             </h1>
-            <p className="text-hero">
+            <p className="text-hero-medals-p">
               You can earn medals by actively participating and engaging with
               the community in various ways:
               <strong>

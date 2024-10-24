@@ -14,7 +14,7 @@ function Navbar() {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [userImage, setUserImage] = useState(null);
   const [username, setUsername] = useState(null)
-  const { isLoggedIn, loggedUserId, authenticateUser } = useContext(AuthContext);
+  const { isLoggedIn, loggedUserId, authenticateUser, loggedUserImg, loggedUserName } = useContext(AuthContext);
   const { theme, toggleTheme } = useContext(ThemeContext);
   const navigate = useNavigate();
 
@@ -27,6 +27,7 @@ function Navbar() {
       try {
         const response = await service.get(`/users/${loggedUserId}`);
         setUserImage(response.data.img);
+        // console.log("foto",loggedUserImg)
         setUsername(response.data.username)
       } catch (error) {
         console.log("error al traer la imagen de usuario");
@@ -67,7 +68,7 @@ function Navbar() {
         <Link to={`/profile/${loggedUserId}`}>
           <button className="navButton">
             <img
-              src={userImage}
+              src={loggedUserImg}
               alt="user-image"
               style={{
                 width: "40px",
@@ -76,7 +77,7 @@ function Navbar() {
                 objectFit: "cover",
               }}
             />
-            <span className="navButtonTxt user" >{username}</span>
+            <span className="navButtonTxt user" >{loggedUserName}</span>
           </button>
         </Link>
       )}
