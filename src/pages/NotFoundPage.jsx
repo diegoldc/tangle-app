@@ -8,9 +8,6 @@ function NotFoundPage() {
     <div
       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
     >
-      <h1 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight">
-        NOT FOUND PAGE
-      </h1>
       
       <img
         style={{ width: "90vw", maxWidth: "500px", borderRadius: "75px" }}

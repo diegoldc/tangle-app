@@ -55,8 +55,8 @@ function ChangePasswordPage() {
             <Label htmlFor="password" value="Previous password" />
           </div>
           <TextInput
-            id="username"
-            type="text"
+            id="password"
+            type="password"
             autoComplete="off"
             defaultValue=""
             onChange={() => setPassword(event.target.value)}
