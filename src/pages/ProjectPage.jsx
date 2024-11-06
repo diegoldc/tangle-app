@@ -22,6 +22,7 @@ import ScreenshotsCarousel from "../components/ScreenshotsCarousel";
 import { FaCalendarDays } from "react-icons/fa6";
 import { AiOutlineGithub } from "react-icons/ai";
 import { GrDeploy } from "react-icons/gr";
+import CommentsSection from "../components/CommentsSection"
 
 function ProjectPage() {
   const { projectId } = useParams();
@@ -405,14 +406,16 @@ function ProjectPage() {
                       >
                         <div className="flex justify-between items-center mb-2">
                           <div className="flex justify-start items-start">
-                            <div className="flex justify-start mr-4 items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold">
+                            <Link to={`/profile/${comment.user._id}`}>
+                              <div className="flex justify-start mr-4 items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold">
                               <img
                                 className="mr-2 w-6 h-6 rounded-full"
                                 src={comment.user.img}
                                 alt="Michael Gough"
-                              />
+                                />
                               {comment.user.username}
-                            </div>
+                              </div>
+                            </Link>
                             <div
                               className="text-gray-500 dark:text-gray-400 max-w-full"
                               style={{ overflow: "hidden" }}
