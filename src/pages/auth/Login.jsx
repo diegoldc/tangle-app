@@ -5,6 +5,9 @@ import { AuthContext } from "../../context/auth.context";
 import { Button, Label, TextInput, Card, Spinner } from "flowbite-react";
 import formLogo from "../../assets/forms-logo.png";
 
+import { FaEyeSlash } from "react-icons/fa6";
+import { FaEye } from "react-icons/fa6";
+
 const API_URL = import.meta.env.VITE_API_URL;
 
 function Login() {
@@ -15,6 +18,8 @@ function Login() {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false)
+  const [seePassword, setSeePassword] = useState("password");
+
 
   const handleUsernameChange = (e) => setUsername(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
@@ -76,7 +81,20 @@ function Login() {
                 </div>
                 <TextInput
                   id="password"
-                  type="password"
+                  type={seePassword}
+                  rightIcon={() =>
+                    seePassword === "password" ? (
+                      <FaEyeSlash
+                        onClick={() => setSeePassword("text")}
+                        cursor="pointer"
+                      />
+                    ) : (
+                      <FaEye
+                        onClick={() => setSeePassword("password")}
+                        cursor="pointer"
+                      />
+                    )
+                  }
                   autoComplete="off"
                   value={password}
                   onChange={handlePasswordChange}

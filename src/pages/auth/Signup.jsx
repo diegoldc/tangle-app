@@ -4,6 +4,10 @@ import { useNavigate, Link } from "react-router-dom";
 // import tailwindConfig from "../../../tailwind.config";
 import { Button, Label, TextInput, Card, Spinner } from "flowbite-react";
 import formLogo from "../../assets/forms-logo.png";
+
+import { FaEyeSlash } from "react-icons/fa6";
+import { FaEye } from "react-icons/fa6";
+
 const API_URL = import.meta.env.VITE_API_URL;
 
 function Signup() {
@@ -14,6 +18,8 @@ function Signup() {
   const [confirmation, setConfirmation] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [seePassword, setSeePassword] = useState("password");
+  const [seeConfirm, setSeeConfirm] = useState("password");
 
   const handleUsernameChange = (e) => setUsername(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
@@ -43,7 +49,7 @@ function Signup() {
 
       if (error.response.status === 400) {
         setErrorMessage(error.response.data.message);
-        setIsLoading(false)
+        setIsLoading(false);
       } else {
         //!aquí debería haber redirección a /error404
       }
@@ -88,7 +94,20 @@ function Signup() {
                 </div>
                 <TextInput
                   id="password"
-                  type="password"
+                  type={seePassword}
+                  rightIcon={() =>
+                    seePassword === "password" ? (
+                      <FaEyeSlash
+                        onClick={() => setSeePassword("text")}
+                        cursor="pointer"
+                      />
+                    ) : (
+                      <FaEye
+                        onClick={() => setSeePassword("password")}
+                        cursor="pointer"
+                      />
+                    )
+                  }
                   autoComplete="off"
                   value={password}
                   onChange={handlePasswordChange}
@@ -102,7 +121,20 @@ function Signup() {
                 </div>
                 <TextInput
                   id="confirmation"
-                  type="password"
+                  type={seeConfirm}
+                  rightIcon={() =>
+                    seeConfirm === "password" ? (
+                      <FaEyeSlash
+                        onClick={() => setSeeConfirm("text")}
+                        cursor="pointer"
+                      />
+                    ) : (
+                      <FaEye
+                        onClick={() => setSeeConfirm("password")}
+                        cursor="pointer"
+                      />
+                    )
+                  }
                   autoComplete="off"
                   value={confirmation}
                   onChange={handleConfirmationChange}
