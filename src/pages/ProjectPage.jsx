@@ -16,7 +16,7 @@ import {
 import { BiSolidLike, BiSolidDislike } from "react-icons/bi";
 import imgLikes from "../assets/likes.png";
 import ScreenshotsCarousel from "../components/ScreenshotsCarousel";
-import { FaCalendarDays } from "react-icons/fa6";
+import { FaCalendarDays, FaTrashCan } from "react-icons/fa6";
 import { AiOutlineGithub } from "react-icons/ai";
 import { GrDeploy } from "react-icons/gr";
 import CommentsSection from "../components/CommentsSection"

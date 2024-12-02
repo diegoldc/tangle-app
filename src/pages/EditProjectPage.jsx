@@ -55,11 +55,26 @@ function EditProjectPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const collaborators = collaboratorsObj.map((obj) => obj._id);
+    let ghURL = github;
+    let depURL = deployment;
+
+    if (ghURL.startsWith("http://")) {
+      ghURL = ghURL.slice(7);
+    }
+    if (ghURL.startsWith("https://")) {
+      ghURL = ghURL.slice(8);
+    }
+    if (depURL.startsWith("http://")) {
+      depURL = depURL.slice(7);
+    }
+    if (depURL.startsWith("https://")) {
+      depURL = depURL.slice(8);
+    }
 
     const editedProject = {
       name,
-      github,
-      deployment,
+      github: ghURL,
+      deployment: depURL,
       creationDate,
       description,
       screenshots,

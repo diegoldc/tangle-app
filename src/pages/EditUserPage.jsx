@@ -47,13 +47,30 @@ function EditUserPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    let ghURL = github;
+    let liURL = linkedin;
+
+    if (ghURL.startsWith("http://")) {
+      ghURL = ghURL.slice(7);
+    }
+    if (ghURL.startsWith("https://")) {
+      ghURL = ghURL.slice(8);
+    }
+    if (liURL.startsWith("http://")) {
+      liURL = liURL.slice(7);
+    }
+    if (liURL.startsWith("https://")) {
+      liURL = liURL.slice(8);
+    }
+
     const editedUser = {
       username,
       firstName,
       lastName,
       img,
-      github,
-      linkedin,
+      github: ghURL,
+      linkedin: liURL,
       tech,
     };
     setLoggedUserName(username);
